@@ -4,52 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Radial Timer</title>
-  <style>
-    body {
-      background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: white;
-      font-family: sans-serif;
-    }
-
-    .timer-container {
-      position: relative;
-      width: 200px;
-      height: 200px;
-    }
-
-    svg {
-      transform: rotate(-90deg);
-    }
-
-    circle {
-      fill: none;
-      stroke-width: 10;
-      stroke-linecap: round;
-    }
-
-    .bg {
-      stroke: #444;
-    }
-
-    .progress {
-      stroke: #00ff88;
-      stroke-dasharray: 565.48;
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 1s linear;
-    }
-
-    .time {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2em;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="timer-container">
@@ -59,31 +14,6 @@
     </svg>
     <div class="time" id="time">60</div>
   </div>
-
-  <script>
-    const FULL_DASH_ARRAY = 565.48;
-    const TIME_LIMIT = 60;
-    let timePassed = 0;
-    let timeLeft = TIME_LIMIT;
-
-    const progressCircle = document.querySelector('.progress');
-    const timeDisplay = document.getElementById('time');
-
-    const timer = setInterval(() => {
-      timePassed++;
-      timeLeft = TIME_LIMIT - timePassed;
-
-      // Update time text
-      timeDisplay.textContent = timeLeft;
-
-      // Update stroke dashoffset
-      const offset = FULL_DASH_ARRAY * (timeLeft / TIME_LIMIT);
-      progressCircle.style.strokeDashoffset = offset;
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-      }
-    }, 1000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
