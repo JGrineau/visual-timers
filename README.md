@@ -1,5 +1,4 @@
-# ⏱️ Visual Timers
-
+# ⏱️ Visual Timers by JP Grineau
 This repository is a growing collection of **beautiful, minimal visual timers** created using **Vanilla JavaScript, HTML, and CSS**.
 
 These timers are designed to be recorded and uploaded as **YouTube videos**, useful for:
