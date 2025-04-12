@@ -71,4 +71,7 @@ timers/3-minute-box-timer/
 ├── script.js
 └── style.css
 
+---
 
+## 🎉 Creator
+Made by [JP_Grineau] — Follow along on YouTube (https://www.youtube.com/@visualtimers2783) or jpgrineau.com
