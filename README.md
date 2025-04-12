@@ -76,4 +76,4 @@ timers/3-minute-box-timer/
 ---
 
 ## 🎉 Creator
-Made by [JP_Grineau] — Follow along on YouTube (https://www.youtube.com/@visualtimers2783) or jpgrineau.com
+Made by JP Grineau — Follow along on YouTube (https://www.youtube.com/@visualtimers2783) or jpgrineau.com
