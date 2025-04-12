@@ -9,6 +9,7 @@ These timers are designed to be recorded and uploaded as **YouTube videos**, use
 - Classroom activities
 - And more!
 
+
 ---
 
 ## ✅ Included Timers
@@ -33,17 +34,18 @@ These timers are designed to be recorded and uploaded as **YouTube videos**, use
 - **Responsive Design** for usability on various devices
 - **Accessibility** features for inclusive use
 
+
 ---
 
 ![YouTube](https://www.youtube.com/@visualtimers2783)
 ## YouTube Ready Design
-
-------------------------
 Each timer is designed to be easily recorded and uploaded to YouTube, with a clean and minimalistic design. Perfect for creators who want:
 - Countdown visuals
 - Focus Timers
 - Clean UI Overlays
 
+
+---
 
 ## 🧠 Brainstorming Ideas
 ⬜ Dark/Light mode toggle
