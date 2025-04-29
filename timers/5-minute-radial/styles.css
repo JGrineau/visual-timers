@@ -1,0 +1,45 @@
+body {
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+    font-family: sans-serif;
+  }
+  
+  .timer-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  
+  svg {
+    transform: rotate(-90deg);
+  }
+  
+  circle {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+  }
+  
+  .bg {
+    stroke: #444;
+  }
+  
+  .progress {
+    stroke: #00ff88;
+    stroke-dasharray: 565.48;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+  }
+  
+  .time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+  }
+  
