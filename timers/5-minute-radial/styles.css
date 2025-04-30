@@ -1,11 +1,12 @@
 body {
-    background: #111;
+    background: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     color: white;
     font-family: sans-serif;
+    margin: 0;
   }
   
   .timer-container {
