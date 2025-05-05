@@ -6,6 +6,7 @@ body {
     height: 100vh;
     color: white;
     font-family: sans-serif;
+    margin: 0;
   }
   
   .timer-container {
