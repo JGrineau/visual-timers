@@ -1,0 +1,41 @@
+body {
+    background-color: #0f0f0f;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+  }
+  
+  .timer-bar {
+    width: 90%;
+    height: 30px;
+    background-color: #333;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #00ff88, #00ffaa);
+    transition: width 1s linear;
+  }
+  
+  .time-display {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
