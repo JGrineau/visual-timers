@@ -1,22 +1,21 @@
-const fill = document.getElementById("fill");
-const timeDisplay = document.getElementById("time");
+const duration = 5 * 60; // 5 minutes in seconds
+const bar = document.getElementById('bar');
+const timeText = document.getElementById('time');
 
-let totalTime = 5 * 60; // 5 minutes in seconds
-let timeLeft = totalTime;
+let timeLeft = duration;
 
-const updateTimer = () => {
-  let minutes = Math.floor(timeLeft / 60);
-  let seconds = timeLeft % 60;
-
-  timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-  const percent = (timeLeft / totalTime) * 100;
-  fill.style.width = `${percent}%`;
+function updateTimer() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  timeText.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  
+  const percentage = ((duration - timeLeft) / duration) * 100;
+  bar.style.width = `${percentage}%`;
 
   if (timeLeft > 0) {
     timeLeft--;
     setTimeout(updateTimer, 1000);
   }
-};
+}
 
 updateTimer();
