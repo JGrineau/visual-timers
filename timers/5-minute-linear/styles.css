@@ -11,15 +11,16 @@ body {
 
 .timer-container {
   width: 80%;
-  max-width: 600px;
+  max-width: 1000px;
   text-align: center;
+  padding: 3rem; 
 }
 
 .bar-bg {
   background: #ccc;
   border-radius: 30px;
   overflow: hidden;
-  height: 30px;
+  height: 50px;
   width: 100%;
   margin-top: 20px;
 }
@@ -32,6 +33,13 @@ body {
 }
 
 .time-text {
-  font-size: 5rem;
+  font-size: 8rem;
   font-weight: bold;
 }
+
+
+
+
+
+
+
