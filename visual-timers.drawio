@@ -62,7 +62,7 @@
           <mxGeometry y="158" width="240" height="82" as="geometry" />
         </mxCell>
         <mxCell id="0FBJy8l07Yth9Wb-NzU2-37" value="TimerList" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="360" y="-70" width="240" height="220" as="geometry" />
+          <mxGeometry x="130" y="105" width="240" height="220" as="geometry" />
         </mxCell>
         <mxCell id="0FBJy8l07Yth9Wb-NzU2-38" value="&lt;div style=&quot;line-height: 150%;&quot;&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- timers: TimerConfig[]&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- selectedTimerId: string&amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- onSelect: (id: string) =&amp;gt; void&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- onEdit: (id: string) =&amp;gt; void&amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- onDelete: (id: string) =&amp;gt; void&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="0FBJy8l07Yth9Wb-NzU2-37" vertex="1">
           <mxGeometry y="26" width="240" height="104" as="geometry" />
@@ -80,7 +80,7 @@
           <mxGeometry y="26" width="220" height="174" as="geometry" />
         </mxCell>
         <mxCell id="0FBJy8l07Yth9Wb-NzU2-45" value="TimerSound" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="470" y="260" width="270" height="270" as="geometry" />
+          <mxGeometry x="130" y="370" width="270" height="270" as="geometry" />
         </mxCell>
         <mxCell id="0FBJy8l07Yth9Wb-NzU2-46" value="&lt;div style=&quot;line-height: 150%;&quot;&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- selectedSound: string&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- availableSounds: string[]&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- volume: number&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;- audioRef: Audio | null&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="0FBJy8l07Yth9Wb-NzU2-45" vertex="1">
           <mxGeometry y="26" width="270" height="94" as="geometry" />
@@ -116,7 +116,7 @@
           <mxGeometry y="158" width="250" height="62" as="geometry" />
         </mxCell>
         <mxCell id="cPqayjlpoU4VI9S6kcBE-5" value="TimerService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-100" y="980" width="280" height="140" as="geometry" />
+          <mxGeometry x="-230" y="740" width="280" height="140" as="geometry" />
         </mxCell>
         <mxCell id="cPqayjlpoU4VI9S6kcBE-6" value="- timers: Timer[]&amp;nbsp;&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="cPqayjlpoU4VI9S6kcBE-5" vertex="1">
           <mxGeometry y="26" width="280" height="26" as="geometry" />
@@ -128,7 +128,7 @@
           <mxGeometry y="60" width="280" height="80" as="geometry" />
         </mxCell>
         <mxCell id="cPqayjlpoU4VI9S6kcBE-9" value="SoundService&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="520" y="810" width="290" height="130" as="geometry" />
+          <mxGeometry x="10" y="970" width="290" height="130" as="geometry" />
         </mxCell>
         <mxCell id="cPqayjlpoU4VI9S6kcBE-10" value="- availableSounds: Sound[]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="cPqayjlpoU4VI9S6kcBE-9" vertex="1">
           <mxGeometry y="26" width="290" height="26" as="geometry" />
