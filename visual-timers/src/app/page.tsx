@@ -11,6 +11,9 @@ export default function Page() {
             <button onClick={() => router.push("/pomodoro")}>
                 Go to Pomodoro
             </button>
+            <button onClick={() => router.push("/linear")}>
+                Go to Linear Timer
+            </button>
         </div>
     );
 }
