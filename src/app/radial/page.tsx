@@ -1,9 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import DurationSelector from '@/components/durationSelection/page';
+import DurationSelector from '@/components/duration-selection/Page';
+import SizeSelector from '@/components/size-selection/Page';
+
 
 export default function RadialTimer() {
+
+  const [size, setSize] = useState(400); // Default size
+
+   const RADIUS = size / 2 - 20;
+
   const [duration, setDuration] = useState(600); // default to 10 minutes
   const FULL_DASH_ARRAY = 2 * Math.PI * 180;
 
@@ -62,25 +69,29 @@ export default function RadialTimer() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-black gap-6">
+
+      {/* 📏 Size Selector */}
+      <SizeSelector size={size} onChange={setSize} />
+
       {/* ⏳ Duration Selector */}
       <DurationSelector value={duration} onChange={setDuration} />
 
       {/* 🕒 Timer Display */}
-      <div className="relative w-[400px] h-[400px]">
+       <div style={{ width: size, height: size }} className="relative">
         <svg className="w-full h-full rotate-[-90deg]">
           <circle
-            className="stroke-gray-700"
-            cx="200"
-            cy="200"
-            r="180"
+            cx={size / 2}
+            cy={size / 2}
+            r={RADIUS}
             fill="none"
+            stroke="gray"
             strokeWidth="20"
           />
           <circle
             ref={progressRef}
-            cx="200"
-            cy="200"
-            r="180"
+            cx={size / 2}
+            cy={size / 2}
+            r={RADIUS}
             fill="none"
             stroke="#00ff88"
             strokeWidth="20"
