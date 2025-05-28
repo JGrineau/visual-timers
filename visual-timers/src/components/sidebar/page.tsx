@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../../app/globals.css';
-import { Menu, Timer, LineChart, Circle, Clock, X, CircleChevronLeft, CircleChevronRight } from 'lucide-react';
+import { Menu, Timer, LineChart, Circle, Clock, CircleChevronLeft } from 'lucide-react';
 import React from 'react';
 import { useState } from 'react';
 
