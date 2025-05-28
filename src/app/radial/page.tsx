@@ -1,15 +1,20 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import DurationSelector from '@/components/durationSelection/page';
 
 export default function RadialTimer() {
-  const TIME_LIMIT = 600; // 10 minutes
+  const [duration, setDuration] = useState(600); // default to 10 minutes
   const FULL_DASH_ARRAY = 2 * Math.PI * 180;
 
-  const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
+  const [timeLeft, setTimeLeft] = useState(duration);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<SVGCircleElement | null>(null);
+
+  useEffect(() => {
+    setTimeLeft(duration);
+  }, [duration]);
 
   useEffect(() => {
     if (isRunning) {
@@ -30,10 +35,10 @@ export default function RadialTimer() {
 
   useEffect(() => {
     if (progressRef.current) {
-      const offset = FULL_DASH_ARRAY * (timeLeft / TIME_LIMIT);
+      const offset = FULL_DASH_ARRAY * (timeLeft / duration);
       progressRef.current.style.strokeDashoffset = offset.toString();
     }
-  }, [timeLeft]);
+  }, [timeLeft, duration]);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
@@ -52,11 +57,15 @@ export default function RadialTimer() {
   const handleReset = () => {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
-    setTimeLeft(TIME_LIMIT);
+    setTimeLeft(duration);
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-black gap-6">
+      {/* ⏳ Duration Selector */}
+      <DurationSelector value={duration} onChange={setDuration} />
+
+      {/* 🕒 Timer Display */}
       <div className="relative w-[400px] h-[400px]">
         <svg className="w-full h-full rotate-[-90deg]">
           <circle
@@ -86,6 +95,7 @@ export default function RadialTimer() {
         </div>
       </div>
 
+      {/* 🔘 Buttons */}
       <div className="flex gap-4">
         <button
           onClick={handleStart}
