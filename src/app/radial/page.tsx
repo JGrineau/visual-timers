@@ -12,7 +12,8 @@ export default function RadialTimer() {
    const RADIUS = size / 2 - 20;
 
   const [duration, setDuration] = useState(600); // default to 10 minutes
-  const FULL_DASH_ARRAY = 2 * Math.PI * 180;
+  
+  const FULL_DASH_ARRAY = 2 * Math.PI * RADIUS;
 
   const [timeLeft, setTimeLeft] = useState(duration);
   const [isRunning, setIsRunning] = useState(false);
@@ -70,13 +71,13 @@ export default function RadialTimer() {
   return (
     <div className="flex flex-col items-center justify-center h-screen text-black gap-6">
 
-      {/* 📏 Size Selector */}
+      {/* Size Selector */}
       <SizeSelector size={size} onChange={setSize} />
 
-      {/* ⏳ Duration Selector */}
+      {/* Duration Selector */}
       <DurationSelector value={duration} onChange={setDuration} />
 
-      {/* 🕒 Timer Display */}
+      {/* Timer Display */}
        <div style={{ width: size, height: size }} className="relative">
         <svg className="w-full h-full rotate-[-90deg]">
           <circle
@@ -106,7 +107,7 @@ export default function RadialTimer() {
         </div>
       </div>
 
-      {/* 🔘 Buttons */}
+      {/* Buttons */}
       <div className="flex gap-4">
         <button
           onClick={handleStart}
