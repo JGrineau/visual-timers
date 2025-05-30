@@ -102,8 +102,10 @@ export default function RadialTimer() {
             style={{ transition: 'stroke-dashoffset 1s linear' }}
           />
         </svg>
-        <div className="absolute top-1/2 left-1/2 text-5xl transform -translate-x-1/2 -translate-y-1/2">
-          {minutes}:{seconds.toString().padStart(2, '0')}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold"
+            style={{ fontSize: `${size / 10}px` }}>
+              
+            {minutes}:{seconds.toString().padStart(2, '0')}
         </div>
       </div>
 
