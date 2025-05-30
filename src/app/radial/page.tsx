@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import DurationSelector from '@/components/duration-selection/Page';
 import SizeSelector from '@/components/size-selection/Page';
+import Full from '@/components/full-screen/Page';
 
 
 export default function RadialTimer() {
@@ -78,6 +79,8 @@ export default function RadialTimer() {
       <DurationSelector value={duration} onChange={setDuration} />
 
       {/* Timer Display */}
+      <Full className="bg-white">
+        {/* <h1 className="text-2xl font-bold mb-4">Radial Timer</h1> */}
        <div style={{ width: size, height: size }} className="relative">
         <svg className="w-full h-full rotate-[-90deg]">
           <circle
@@ -104,10 +107,11 @@ export default function RadialTimer() {
         </svg>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold"
             style={{ fontSize: `${size / 10}px` }}>
-              
+
             {minutes}:{seconds.toString().padStart(2, '0')}
         </div>
       </div>
+      </Full>
 
       {/* Buttons */}
       <div className="flex gap-4">
