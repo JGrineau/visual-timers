@@ -45,7 +45,7 @@ export default function FullscreenTimer({ children, className }: FullscreenTimer
      {!isFullscreen && (
         <button
           onClick={toggleFullscreen}
-          className="px-6 py-2 hover:bg-black text-black rounded flex items-center justify-center"
+          className="px-6 py-2 transition-transform hover:scale-110 text-black rounded flex items-center justify-center"
           aria-label="Enter Fullscreen"
         >
           <Maximize size={24} />
