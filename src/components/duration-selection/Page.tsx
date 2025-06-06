@@ -12,13 +12,15 @@ export default function DurationSelector({ value, onChange }: DurationSelectorPr
   };
 
   return (
-    <div className="mb-4">
-      <label htmlFor="duration" className="mr-2">Timer Duration:</label>
+    <div className="absolute top-80 right-90 bg-white bg-opacity-90 text-black p-4 rounded-lg shadow-lg backdrop-blur-sm">
+      <label htmlFor="duration" className="block text-sm font-semibold mb-2">
+        Timer Duration
+      </label>
       <select
         id="duration"
         value={value}
         onChange={handleChange}
-        className="text-black px-3 py-1 rounded"
+        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value={60}>1 Minute</option>
         <option value={300}>5 Minutes</option>
