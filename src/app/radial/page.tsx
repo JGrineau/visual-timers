@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import DurationSelector from '@/components/duration-selection/Page';
 import SizeSelector from '@/components/size-selection/Page';
 import Full from '@/components/full-screen/Page';
+import { RotateCcw } from 'lucide-react';
 
 
 export default function RadialTimer() {
@@ -69,6 +70,27 @@ export default function RadialTimer() {
     setTimeLeft(duration);
   };
 
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.code === 'Space') {
+      e.preventDefault(); // Prevent scrolling
+      if (isRunning) {
+        handleStop();
+      } else if (timeLeft > 0) {
+        handleStart();
+      }
+    }
+
+    if (e.key.toLowerCase() === 'r') {
+      handleReset();
+    }
+  };
+
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [isRunning, timeLeft]);
+
+
   return (
     <div className="flex flex-col items-center justify-center h-screen text-black gap-6">
 
@@ -113,7 +135,30 @@ export default function RadialTimer() {
       </div>
       </Full>
 
-      {/* Buttons */}
+      <div className="flex items-center gap-4">
+  {/* Start / Pause Toggle Button */}
+  <button
+    onClick={isRunning ? handleStop : handleStart}
+    className={`px-6 py-2 ${
+      isRunning ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'
+    } text-white rounded`}
+    disabled={timeLeft === 0}
+  >
+    {isRunning ? 'Pause' : 'Start'}
+  </button>
+
+  {/* Reset Icon Button */}
+  <button
+    onClick={handleReset}
+    className="p-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full"
+    title="Reset Timer"
+  >
+    <RotateCcw className="w-5 h-5" />
+  </button>
+</div>
+
+
+      {/* Buttons
       <div className="flex gap-4">
         <button
           onClick={handleStart}
@@ -135,7 +180,7 @@ export default function RadialTimer() {
         >
           Reset
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
