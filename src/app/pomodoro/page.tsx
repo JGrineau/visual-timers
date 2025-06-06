@@ -1,5 +1,5 @@
 export default function Pomodoro() {
     return (
-        <h1>Hello Pomodoro!!!</h1>
+        <h1>Currently under construction</h1>
     )
 }
