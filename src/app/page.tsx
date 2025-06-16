@@ -1,18 +1,41 @@
 "use client";
 import { useRouter } from "next/navigation";
+import React from "react";
+import YouTubeEmbed from "@/components/YouTubeEmbed/Page";
+import AutoVideoSlider from "@/components/AutoVideoSlider/Page";
+
+import '../app/globals.css'; // Ensure global styles are imported
 
 export default function Page() {
     const router = useRouter();
 
     return (
-        <div>
-            <h1>Hello Next.js!</h1>
-            <button onClick={() => router.push("/pomodoro")}>
-                Go to Pomodoro
-            </button>
-            <button onClick={() => router.push("/linear")}>
-                Go to Linear Timer
-            </button>
+        <div className="bg-white p-8 rounded-xl shadow-md max-w-max mx-auto max-h-max scroll-auto text-center">
+            <h1 className="text-6xl font-extrabold text-(--text-color) mb-8 p-8 ">
+    Hello Visual Timers!
+  </h1>
+
+  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+    Welcome to the Visual Timers application
+  </h2>
+            <p>
+                This is a Next.js application designed to help you visualize time
+                through various timer components.
+                <br />
+                
+                 You can explore different timer types
+                and their functionalities.
+
+                Check out my YouTube page where I upload custom timers and
+                visualizations. 
+            </p>
+
+             <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4 text-center">Featured Video Of The Day</h1>
+      <YouTubeEmbed url="https://www.youtube.com/watch?v=Fu4q274II08&t=75s" />
+    </div>
+    <AutoVideoSlider />
+
         </div>
     );
 }
