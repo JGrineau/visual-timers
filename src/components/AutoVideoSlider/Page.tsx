@@ -16,7 +16,7 @@ const videoList = [
 ];
 
 const ITEMS_PER_PAGE = 3;
-const AUTO_ROTATE_INTERVAL = 10000; // 10 seconds
+const AUTO_ROTATE_INTERVAL = 10000; 
 
 const AutoVideoSlider: React.FC = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -36,7 +36,7 @@ const AutoVideoSlider: React.FC = () => {
       handleNext();
     }, AUTO_ROTATE_INTERVAL);
 
-    return () => clearInterval(interval); // Clean up on unmount
+    return () => clearInterval(interval); 
   }, []);
 
   const visibleVideos = videoList.slice(startIndex, startIndex + ITEMS_PER_PAGE);

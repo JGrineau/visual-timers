@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../../app/globals.css';
-import { Menu, Timer, LineChart, Circle, Clock, CircleChevronLeft } from 'lucide-react';
+import { Menu, Timer, LineChart, Circle, Clock, CircleChevronLeft, HomeIcon } from 'lucide-react';
 import React from 'react';
 import { useState } from 'react';
 
@@ -32,6 +32,14 @@ export default function Page() {
       
       {/* Navigation Links */}
       <nav className="flex flex-col space-y-4">
+
+        <Link
+          href="/"
+          className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+        >
+          <HomeIcon size={20} />
+          {!isCollapsed && <span>Home</span>}
+        </Link>
         <Link
           href="/pomodoro"
           className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"

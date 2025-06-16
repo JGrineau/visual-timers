@@ -4,7 +4,7 @@ import React from "react";
 import YouTubeEmbed from "@/components/YouTubeEmbed/Page";
 import AutoVideoSlider from "@/components/AutoVideoSlider/Page";
 
-import '../app/globals.css'; // Ensure global styles are imported
+import '../app/globals.css'; 
 
 export default function Page() {
     const router = useRouter();
