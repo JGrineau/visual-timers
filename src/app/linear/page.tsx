@@ -5,6 +5,8 @@ import SizeSelector from "@/components/size-selection/Page";
 import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
 
+import '../../app/globals.css'; 
+
 export default function Linear() {
   const progressRef = useRef<SVGLineElement>(null);
 
@@ -12,7 +14,7 @@ export default function Linear() {
   const [timeLeft, setTimeLeft] = useState(duration);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [size, setSize] = useState(700); // Affects the SVG width
+  const [size, setSize] = useState(700); 
 
   // Sync timeLeft if duration changes
   useEffect(() => {
@@ -90,12 +92,6 @@ export default function Linear() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen p-6 text-black">
-      {/* Side Panel */}
-      {/* <div className="fixed top-10 right-10 z-10 flex flex-col gap-6 bg-white bg-opacity-90 p-4 rounded-lg shadow-lg backdrop-blur-sm">
-        <SizeSelector size={size} onChange={setSize} />
-        <DurationSelector value={duration} onChange={setDuration} />
-      </div> */}
-
 
 <SizeSelector size={size} onChange={setSize} />
         <DurationSelector value={duration} onChange={setDuration} />
@@ -120,7 +116,7 @@ export default function Linear() {
             y1="20"
             x2="0"
             y2="20"
-            stroke="#00acc1"
+            stroke="var(--accent-color)"
             strokeWidth="20"
             strokeLinecap="round"
           />
