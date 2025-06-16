@@ -30,8 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen overflow-hidden">
-          <Sidebar />
+        <div className="flex h-screen overflow-auto">
+
+          <div className="fixed">
+            <Sidebar />
+          </div>
           <main className="flex-1 bg-white p-4 transition-all duration-300">
             {children}
           </main>
