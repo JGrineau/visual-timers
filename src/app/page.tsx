@@ -23,7 +23,7 @@ export default function Page() {
                 through various timer components.
                 <br />
                 
-                 You can explore different timer types
+                You can explore different timer types
                 and their functionalities.
 
                 Check out my YouTube page where I upload custom timers and
