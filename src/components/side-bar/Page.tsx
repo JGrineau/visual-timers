@@ -40,6 +40,8 @@ export default function Page() {
           <HomeIcon size={20} />
           {!isCollapsed && <span>Home</span>}
         </Link>
+        
+       <div className="relative">
         <Link
           href="/pomodoro"
           className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
@@ -47,6 +49,13 @@ export default function Page() {
           <Timer size={20} />
           {!isCollapsed && <span>Pomodoro</span>}
         </Link>
+          {!isCollapsed && (
+            <span className="absolute -top-2 left-20 bg-yellow-400 text-black text-xs font-semibold px-2 py-0.5 rounded">
+              Coming Soon
+            </span>
+          )}
+        </div>
+
         <Link
           href="/linear"
           className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
@@ -62,12 +71,19 @@ export default function Page() {
           {!isCollapsed && <span>Radial</span>}
         </Link>
         <Link
-          href="/custom"
-          className="flex items-center space-x-2 hover:bg-gray-700 p-2 rounded transition"
-        >
-          <Clock size={20} />
-          {!isCollapsed && <span>Custom</span>}
-        </Link>
+    href="/custom"
+    className="flex flex-col items-start hover:bg-gray-700 p-2 rounded transition"
+  >
+    <div className="flex items-center space-x-2">
+      <Clock size={20} />
+      {!isCollapsed && <span>Custom</span>}
+    </div>
+    {!isCollapsed && (
+      <span className="ml-6 mt-1 bg-yellow-400 text-black text-xs font-semibold px-2 py-0.5 rounded">
+        Coming Soon
+      </span>
+    )}
+  </Link>
       </nav>
     </aside>
   );
