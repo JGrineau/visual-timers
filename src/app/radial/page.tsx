@@ -5,7 +5,7 @@ import DurationSelector from '@/components/duration-selection/Page';
 import SizeSelector from '@/components/size-selection/Page';
 import Full from '@/components/full-screen/Page';
 import { RotateCcw } from 'lucide-react';
-import '../../app/globals.css'; // Ensure global styles are applied
+import '../../app/globals.css'; 
 
 
 export default function RadialTimer() {
