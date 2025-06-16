@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+
 import React from "react";
 import YouTubeEmbed from "@/components/YouTubeEmbed/Page";
 import AutoVideoSlider from "@/components/AutoVideoSlider/Page";
@@ -7,7 +7,7 @@ import AutoVideoSlider from "@/components/AutoVideoSlider/Page";
 import '../app/globals.css'; 
 
 export default function Page() {
-    const router = useRouter();
+  
 
     return (
         <div className="bg-white p-8 rounded-xl shadow-md max-w-max mx-auto max-h-max scroll-auto text-center">
