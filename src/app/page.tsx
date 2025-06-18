@@ -10,15 +10,16 @@ export default function Page() {
   
 
     return (
-        <div className="bg-white p-8 rounded-xl shadow-md max-w-max mx-auto max-h-max scroll-auto text-center">
-            <h1 className="text-6xl font-extrabold text-(--text-color) mb-8 p-8 ">
+      <div className="flex min-h-screen">
+        <div className="flex-1 bg-white p-8 m-8 overflow-auto">
+            <h1 className="text-6xl font-extrabold text-(--text-color) mb-8 text-center">
     Hello Visual Timers!
   </h1>
 
-  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+  <h2 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
     Welcome to the Visual Timers application
   </h2>
-            <p>
+            <p className="text-center">
                 This is a Next.js application designed to help you visualize time
                 through various timer components.
                 <br />
@@ -36,6 +37,7 @@ export default function Page() {
     </div>
     <AutoVideoSlider />
 
+        </div>
         </div>
     );
 }
