@@ -1,20 +1,22 @@
 'use client';
 import Link from 'next/link';
 import '../../app/globals.css';
-import { Menu, Timer, LineChart, Circle, Clock, CircleChevronLeft, HomeIcon } from 'lucide-react';
+import { Menu, Timer, LineChart, Circle, Clock, CircleChevronLeft, HomeIcon, XCircle } from 'lucide-react';
 import React from 'react';
 import { useState } from 'react';
+
+import MobileMenu from '../mobile-menu/Page'; 
 
 
 export default function Page() {
    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [open, setOpen] = useState(false);
 
   return (
+    <div>
     <aside
-      className={`h-screen bg-(--primary-color) text-white flex flex-col p-4 transition-all duration-300 ${
-        isCollapsed ? "w-16" : "w-64"
-      }`}
-    >
+      className={`hidden md:flex h-screen bg-(--primary-color) text-white flex-col p-4 transition-all duration-300 
+        ${isCollapsed ? "w-16" : "w-64" }`} >
     {/* Collapse Button */}
       <button
         className="mb-6 text-white hover:text-(--accent-color) flex items-center space-x-2"
@@ -86,5 +88,17 @@ export default function Page() {
   </Link>
       </nav>
     </aside>
+
+      {/* Mobile/Tablet Menu Button */}
+      <button
+          className="fixed top-4 left-4 z-99999 flex md:hidden bg-[var(--primary-color)] text-white p-2 rounded-full shadow-lg hover:bg-[var(--accent-color)] transition"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
+        >
+          {open ? <XCircle size={24} /> : <Menu size={24} />}
+        </button>
+        <MobileMenu open={open} onClose={() => setOpen(false)} />
+
+  </div> //end of return
   );
 }
