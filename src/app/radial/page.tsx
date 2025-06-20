@@ -25,7 +25,7 @@ export default function RadialTimer() {
 
   useEffect(() => {
      const handleResize = () => {
-      if (window.innerWidth <= 426) {
+      if (window.innerWidth <= 449) {
         setSize(200); // For 375px and similar small screens
       } else if (window.innerWidth < 769) {
         setSize(280); // For tablet/small screens
