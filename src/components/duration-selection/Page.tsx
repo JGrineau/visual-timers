@@ -12,7 +12,7 @@ export default function DurationSelector({ value, onChange }: DurationSelectorPr
   };
 
   return (
-    <div className="absolute top-80 right-90 bg-white bg-opacity-90 text-black p-4 rounded-lg shadow-lg backdrop-blur-sm">
+    <div className="bg-white bg-opacity-90 text-black p-4 rounded-lg shadow-lg backdrop-blur-sm">
       <label htmlFor="duration" className="block text-sm font-semibold mb-2">
         Timer Duration
       </label>

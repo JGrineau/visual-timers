@@ -6,7 +6,7 @@ type SizeSelectorProps = {
 
 export default function Page({ size, onChange }: SizeSelectorProps) {
   return (
-     <div className="absolute top-140 right-90 bg-white bg-opacity-90 text-black p-5 rounded-lg shadow-lg backdrop-blur-sm">
+     <div className="bg-white bg-opacity-90 text-black p-5 rounded-lg shadow-lg backdrop-blur-sm">
       <label className="block text-sm font-semibold mb-2">Timer Size</label>
       <select
         value={size}

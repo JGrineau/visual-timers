@@ -36,7 +36,7 @@ export default function FullscreenTimer({ children, className }: FullscreenTimer
       <div
         ref={timerRef}
         className={`relative flex justify-center items-center ${
-    isFullscreen ? 'w-screen h-screen' : ''
+    isFullscreen ? 'w-screen h-screen bg-white' : ''
         } ${className ?? ''}`}
       >
         {children}
@@ -55,7 +55,7 @@ export default function FullscreenTimer({ children, className }: FullscreenTimer
       {isFullscreen && (
         <button
           onClick={toggleFullscreen}
-          className="absolute top-4 right-4 px-4 py-2 bg-gray-800 text-white rounded flex items-center justify-center"
+          className="absolute top-4 right-4 px-4 py-2 bg-white text-white rounded flex items-center justify-center"
           aria-label="Exit Fullscreen"
         >
           <Minimize size={24} />

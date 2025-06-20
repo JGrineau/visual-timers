@@ -24,6 +24,21 @@ export default function RadialTimer() {
   const progressRef = useRef<SVGCircleElement | null>(null);
 
   useEffect(() => {
+     const handleResize = () => {
+      if (window.innerWidth <= 426) {
+        setSize(200); // For 375px and similar small screens
+      } else if (window.innerWidth < 769) {
+        setSize(280); // For tablet/small screens
+      } else {
+        setSize(400); // Desktop
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     setTimeLeft(duration);
   }, [duration]);
 
@@ -93,19 +108,23 @@ export default function RadialTimer() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-black gap-6">
+    <div className="flex flex-col items-center justify-center min-h-screen px-2 py-8 gap-6">
 
-      {/* Size Selector */}
-      <SizeSelector size={size} onChange={setSize} />
+      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-md">
+      <div className="hidden md:block">
+        {/* Size Selector */}
+        <SizeSelector size={size} onChange={setSize} />
+      </div>
 
       {/* Duration Selector */}
       <DurationSelector value={duration} onChange={setDuration} />
+      </div>
 
       {/* Timer Display */}
-      <Full className="bg-white">
+      <Full className='bg-transparent'>
         {/* <h1 className="text-2xl font-bold mb-4">Radial Timer</h1> */}
-       <div style={{ width: size, height: size }} className="relative">
-        <svg className="w-full h-full rotate-[-90deg]">
+       <div style={{ width: size, height: size, maxWidth: '90vw',maxHeight: '60vw'}} className="bg-transparent">
+        <svg className="w-full h-full rotate-[-90deg] bd">
           <circle
             cx={size / 2}
             cy={size / 2}
