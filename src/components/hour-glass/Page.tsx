@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const Hourglass: React.FC = () => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -14,7 +14,7 @@ const Hourglass: React.FC = () => {
   return (
     <div
       className={`flex justify-center items-center h-[300px] transition-transform duration-500 ${
-        isFlipped ? 'rotate-180' : ''
+        isFlipped ? "rotate-180" : ""
       }`}
     >
       <div className="relative w-[100px] h-[200px]">

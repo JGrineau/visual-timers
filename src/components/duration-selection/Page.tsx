@@ -1,18 +1,21 @@
-'use client';
+"use client";
 
 interface DurationSelectorProps {
   value: number;
   onChange: (value: number) => void;
 }
 
-export default function DurationSelector({ value, onChange }: DurationSelectorProps) {
+export default function DurationSelector({
+  value,
+  onChange,
+}: DurationSelectorProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = parseInt(e.target.value);
     onChange(newValue);
   };
 
   return (
-    <div className="absolute top-80 right-90 bg-white bg-opacity-90 text-black p-4 rounded-lg shadow-lg backdrop-blur-sm">
+    <div className="bg-white bg-opacity-90 text-black p-4 rounded-lg shadow-lg backdrop-blur-sm">
       <label htmlFor="duration" className="block text-sm font-semibold mb-2">
         Timer Duration
       </label>
