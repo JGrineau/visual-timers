@@ -19,6 +19,12 @@ const AUTO_ROTATE_INTERVAL = 10000;
 
 const AutoVideoSlider: React.FC = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [sliderPaused, setSliderPaused] = useState(false);
+
+  // handle slider pause on video interaction
+  const handleVideoInteraction = () => {
+    setSliderPaused(true);
+  };
 
   const handlePrev = () => {
     setStartIndex((prev) => Math.max(prev - ITEMS_PER_PAGE, 0));
@@ -31,12 +37,21 @@ const AutoVideoSlider: React.FC = () => {
   };
 
   useEffect(() => {
+    if (sliderPaused) return;
     const interval = setInterval(() => {
+      // advance slide
       handleNext();
     }, AUTO_ROTATE_INTERVAL);
-
     return () => clearInterval(interval);
-  }, []);
+  }, [sliderPaused]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleNext();
+  //   }, AUTO_ROTATE_INTERVAL);
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const visibleVideos = videoList.slice(
     startIndex,
@@ -61,7 +76,7 @@ const AutoVideoSlider: React.FC = () => {
         <div className="flex gap-4">
           {visibleVideos.map((url, index) => (
             <div key={index} className="w-94">
-              <YouTubeEmbed url={url} />
+              <YouTubeEmbed url={url} onPlay={handleVideoInteraction} />
             </div>
           ))}
         </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import YouTubeEmbed from "@/components/YouTubeEmbed/Page";
-import AutoVideoSlider from "@/components/AutoVideoSlider/Page";
+import AutoVideoSlider from "@/components/auto-video-slider/Page";
 
 import "../app/globals.css";
 

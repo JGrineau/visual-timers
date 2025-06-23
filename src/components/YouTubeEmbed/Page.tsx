@@ -1,33 +1,48 @@
-import React from 'react';
+import React from "react";
+import YouTube, { YouTubeProps } from "react-youtube";
 
-interface YouTubeEmbedProps {
-  url: string; // Full YouTube URL like https://www.youtube.com/watch?v=abc123
-}
-
-const extractVideoId = (url: string): string | null => {
-  const regex =
-    /(?:youtube\.com\/.*(?:\?v=|\/embed\/|\/v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-  const match = url.match(regex);
-  return match ? match[1] : null;
+type YouTubeEmbedProps = {
+  url: string;
+  onPlay?: () => void;
+  onPause?: () => void;
 };
 
-const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ url }) => {
+function extractVideoId(url: string): string | null {
+  // Simple regex for YouTube video ID extraction
+  const match = url.match(
+    /(?:youtube\.com\/.*v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+  );
+  return match ? match[1] : null;
+}
+
+const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
+  url,
+  onPlay,
+  onPause,
+}) => {
   const videoId = extractVideoId(url);
 
   if (!videoId) {
     return <p className="text-red-500">Invalid YouTube URL</p>;
   }
 
+  const opts: YouTubeProps["opts"] = {
+    width: "100%",
+    height: "100%",
+    playerVars: {
+      autoplay: 0,
+    },
+  };
+
   return (
-    <div className="w-full max-w-2xl aspect-video mx-auto">
-      <iframe
-        className="w-full h-full rounded-xl shadow-lg"
-        src={`https://www.youtube.com/embed/${videoId}`}
-        title="YouTube video player"
-        frameBorder={0}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+    <div className="w-full max-w-2xl aspect-video mx-auto rounded-xl shadow-lg overflow-hidden">
+      <YouTube
+        className="w-full h-full"
+        videoId={videoId}
+        opts={opts}
+        onPlay={onPlay}
+        onPause={onPause}
+      />
     </div>
   );
 };
