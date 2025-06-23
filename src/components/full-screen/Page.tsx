@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { Maximize, Minimize } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { Maximize, Minimize } from "lucide-react";
 
 type FullscreenTimerProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export default function FullscreenTimer({ children, className }: FullscreenTimerProps) {
+export default function FullscreenTimer({
+  children,
+  className,
+}: FullscreenTimerProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const timerRef = useRef<HTMLDivElement | null>(null);
 
@@ -25,9 +28,9 @@ export default function FullscreenTimer({ children, className }: FullscreenTimer
       setIsFullscreen(!!document.fullscreenElement);
     };
 
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, []);
 
@@ -36,16 +39,16 @@ export default function FullscreenTimer({ children, className }: FullscreenTimer
       <div
         ref={timerRef}
         className={`relative flex justify-center items-center ${
-    isFullscreen ? 'w-screen h-screen bg-white' : ''
-        } ${className ?? ''}`}
+          isFullscreen ? "w-screen h-screen bg-white" : ""
+        } ${className ?? ""}`}
       >
         {children}
       </div>
 
-     {!isFullscreen && (
+      {!isFullscreen && (
         <button
           onClick={toggleFullscreen}
-          className="absolute bottom-10 right-10 p-4 bg-white text-black rounded-full shadow-xl/30 hover:bg-gray-100 hover:scale-110"
+          className="absolute bottom-10 right-10 p-4 bg-white text-black rounded-full shadow-xl/30 hover:bg-gray-100 hover:scale-110 hidden md:flex"
           aria-label="Enter Fullscreen"
         >
           <Maximize size={24} />

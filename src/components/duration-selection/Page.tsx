@@ -1,11 +1,14 @@
-'use client';
+"use client";
 
 interface DurationSelectorProps {
   value: number;
   onChange: (value: number) => void;
 }
 
-export default function DurationSelector({ value, onChange }: DurationSelectorProps) {
+export default function DurationSelector({
+  value,
+  onChange,
+}: DurationSelectorProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = parseInt(e.target.value);
     onChange(newValue);
