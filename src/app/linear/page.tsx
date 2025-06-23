@@ -83,7 +83,11 @@ export default function Linear() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        isRunning ? handleStop() : timeLeft > 0 && handleStart();
+        if (isRunning) {
+          handleStop();
+        } else if (timeLeft > 0) {
+          handleStart();
+        }
       }
       if (e.key.toLowerCase() === "r") handleReset();
     };
