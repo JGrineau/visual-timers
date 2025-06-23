@@ -4,7 +4,6 @@ import DurationSelector from "@/components/duration-selection/Page";
 import SizeSelector from "@/components/size-selection/Page";
 import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
-
 import "../../app/globals.css";
 
 export default function Linear() {
@@ -14,14 +13,26 @@ export default function Linear() {
   const [timeLeft, setTimeLeft] = useState(duration);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [size, setSize] = useState(700);
+  const [size, setSize] = useState(600); // Default, gets updated dynamically
 
-  // Sync timeLeft if duration changes
+  // Update `size` based on window width
+  useEffect(() => {
+    const updateSize = () => {
+      const width = Math.min(window.innerWidth * 0.9, 600); // 90% of screen width or max 600
+      setSize(width);
+    };
+
+    updateSize(); // Initial call
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  // Sync timeLeft when duration changes
   useEffect(() => {
     setTimeLeft(duration);
   }, [duration]);
 
-  // Start / Stop timer
+  // Timer logic
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
@@ -39,7 +50,7 @@ export default function Linear() {
     return () => clearInterval(intervalRef.current!);
   }, [isRunning]);
 
-  // Update SVG progress
+  // Update progress line
   useEffect(() => {
     if (progressRef.current) {
       const progress = (timeLeft / duration) * size;
@@ -47,20 +58,17 @@ export default function Linear() {
     }
   }, [timeLeft, duration, size]);
 
+  // Format time display
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
-
-  const formatTime = (min: number, sec: number) => {
-    return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
-  };
+  const formatTime = (min: number, sec: number) =>
+    `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 
   const handleStart = () => {
     if (!isRunning && timeLeft > 0) setIsRunning(true);
   };
 
-  const handleStop = () => {
-    setIsRunning(false);
-  };
+  const handleStop = () => setIsRunning(false);
 
   const handleReset = () => {
     setIsRunning(false);
@@ -70,20 +78,14 @@ export default function Linear() {
     }
   };
 
+  // Keyboard controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
-        e.preventDefault(); // Prevent scrolling
-        if (isRunning) {
-          handleStop();
-        } else if (timeLeft > 0) {
-          handleStart();
-        }
+        e.preventDefault();
+        isRunning ? handleStop() : timeLeft > 0 && handleStart();
       }
-
-      if (e.key.toLowerCase() === "r") {
-        handleReset();
-      }
+      if (e.key.toLowerCase() === "r") handleReset();
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -91,13 +93,19 @@ export default function Linear() {
   }, [isRunning, timeLeft]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen p-6 text-black">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 text-black">
       <SizeSelector size={size} onChange={setSize} />
       <DurationSelector value={duration} onChange={setDuration} />
-      <Full className="bg-white">
-        {/* Linear Progress Timer */}
-        <div className="mt-10" style={{ width: size }}>
-          <svg width={size} height="40">
+
+      <Full className="bg-white w-full">
+        {/* Timer Area */}
+        <div className="mt-10 w-full max-w-[90vw] sm:max-w-[600px]">
+          <svg
+            width="100%"
+            height="40"
+            viewBox={`0 0 ${size} 40`}
+            preserveAspectRatio="none"
+          >
             {/* Background Line */}
             <line
               x1="0"
@@ -121,15 +129,15 @@ export default function Linear() {
             />
           </svg>
 
-          {/* Timer Display */}
-          <div className="text-center mt-4 text-3xl font-bold">
+          {/* Time Display */}
+          <div className="text-center mt-4 text-2xl sm:text-3xl font-bold">
             {formatTime(minutes, seconds)}
           </div>
         </div>
       </Full>
 
-      {/* Control Buttons */}
-      <div className="mt-6 flex gap-4">
+      {/* Controls */}
+      <div className="mt-6 flex flex-wrap justify-center gap-4">
         <button
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
