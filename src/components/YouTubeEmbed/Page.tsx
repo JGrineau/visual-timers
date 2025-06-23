@@ -35,7 +35,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl aspect-video mx-auto rounded-xl shadow-lg overflow-hidden">
+    <div className="w-full max-w-xl aspect-video mx-auto rounded-xl shadow-lg overflow-hidden md:max-w-1xl">
       <YouTube
         className="w-full h-full"
         videoId={videoId}

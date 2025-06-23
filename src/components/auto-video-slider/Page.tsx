@@ -2,6 +2,24 @@ import React, { useState, useEffect } from "react";
 import YouTubeEmbed from "../YouTubeEmbed/Page";
 import { ArrowRightCircle, ArrowLeftCircle } from "lucide-react";
 
+// Responsive hook
+function useItemsPerPage() {
+  const [items, setItems] = useState(3);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= 768) setItems(1); // mobile
+      else if (window.innerWidth < 1024) setItems(2); // tablet
+      else setItems(3); // desktop
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return items;
+}
+
 const videoList = [
   "https://www.youtube.com/watch?v=ka3dJSm37dk",
   "https://www.youtube.com/watch?v=jHy81Am8p6s",
@@ -14,10 +32,10 @@ const videoList = [
   "https://www.youtube.com/watch?v=B9fu04BtzQM",
 ];
 
-const ITEMS_PER_PAGE = 3;
 const AUTO_ROTATE_INTERVAL = 10000;
 
 const AutoVideoSlider: React.FC = () => {
+  const itemsPerPage = useItemsPerPage();
   const [startIndex, setStartIndex] = useState(0);
   const [sliderPaused, setSliderPaused] = useState(false);
 
@@ -27,42 +45,30 @@ const AutoVideoSlider: React.FC = () => {
   };
 
   const handlePrev = () => {
-    setStartIndex((prev) => Math.max(prev - ITEMS_PER_PAGE, 0));
+    setStartIndex((prev) => Math.max(prev - itemsPerPage, 0));
   };
 
   const handleNext = () => {
     setStartIndex((prev) =>
-      prev + ITEMS_PER_PAGE >= videoList.length ? 0 : prev + ITEMS_PER_PAGE
+      prev + itemsPerPage >= videoList.length ? 0 : prev + itemsPerPage
     );
   };
 
   useEffect(() => {
     if (sliderPaused) return;
     const interval = setInterval(() => {
-      // advance slide
       handleNext();
     }, AUTO_ROTATE_INTERVAL);
     return () => clearInterval(interval);
-  }, [sliderPaused]);
+  }, [sliderPaused, itemsPerPage, startIndex]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     handleNext();
-  //   }, AUTO_ROTATE_INTERVAL);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  const visibleVideos = videoList.slice(
-    startIndex,
-    startIndex + ITEMS_PER_PAGE
-  );
+  const visibleVideos = videoList.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="p-4">
+    <div className="p-2 sm:p-4">
       <h2 className="text-xl font-semibold mb-4 text-center">More Timers</h2>
 
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2 sm:gap-4">
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
@@ -72,10 +78,10 @@ const AutoVideoSlider: React.FC = () => {
           <ArrowLeftCircle size={44} />
         </button>
 
-        {/* 3 Video Thumbnails */}
-        <div className="flex gap-4">
+        {/* Video Thumbnails */}
+        <div className={`flex gap-2 sm:gap-4`}>
           {visibleVideos.map((url, index) => (
-            <div key={index} className="w-94">
+            <div key={index} className="w-64 sm:w-80">
               <YouTubeEmbed url={url} onPlay={handleVideoInteraction} />
             </div>
           ))}

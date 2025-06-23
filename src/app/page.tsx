@@ -8,9 +8,9 @@ import "../app/globals.css";
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen">
-      <div className="flex-1 bg-white p-8 m-8 overflow-auto">
-        <h1 className="text-6xl font-extrabold text-(--text-color) mb-8 text-center">
+    <div className="flex min-h-screen mx-auto">
+      <div className="flex-1 bg-white overflow-auto">
+        <h1 className="text-6xl font-extrabold text-(--text-color) mb-8 text-center mt-14">
           Hello Visual Timers!
         </h1>
 

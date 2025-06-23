@@ -127,7 +127,7 @@ export default function RadialTimer() {
           }}
           className="bg-transparent"
         >
-          <svg className="w-full h-full rotate-[-90deg] bd">
+          <svg className="w-full h-full rotate-[-90deg] bg-transparent">
             <circle
               cx={size / 2}
               cy={size / 2}

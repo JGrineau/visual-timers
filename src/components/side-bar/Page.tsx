@@ -23,7 +23,7 @@ export default function Page() {
   return (
     <div>
       <aside
-        className={`hidden md:flex h-screen bg-(--primary-color) text-white flex-col p-4 transition-all duration-300 
+        className={`hidden lg:flex h-screen bg-(--primary-color) text-white flex-col p-4 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
       >
         {/* Collapse Button */}
@@ -99,7 +99,7 @@ export default function Page() {
 
       {/* Mobile/Tablet Menu Button */}
       <button
-        className="fixed top-4 left-4 z-99999 flex md:hidden bg-[var(--primary-color)] text-white p-2 rounded-full shadow-lg hover:bg-[var(--accent-color)] transition"
+        className="fixed top-4 left-4 z-99999 flex lg:hidden bg-[var(--primary-color)] text-white p-2 rounded-full shadow-lg hover:bg-[var(--accent-color)] transition"
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close menu" : "Open menu"}
       >
