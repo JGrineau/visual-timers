@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import YouTubeEmbed from "@/components/YouTubeEmbed/Page";
+import YouTubeEmbed from "@/components/youtube-embed/Page";
 import AutoVideoSlider from "@/components/auto-video-slider/Page";
 
 import "../app/globals.css";

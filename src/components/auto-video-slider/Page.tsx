@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import YouTubeEmbed from "../YouTubeEmbed/Page";
+import YouTubeEmbed from "../youtube-embed/Page";
 import { ArrowRightCircle, ArrowLeftCircle } from "lucide-react";
 
 // Responsive hook
