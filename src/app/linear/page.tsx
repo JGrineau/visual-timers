@@ -146,9 +146,9 @@ export default function Linear() {
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
             isRunning
-              ? "bg-red-600 hover:bg-red-700"
-              : "bg-green-600 hover:bg-green-700"
-          } text-white rounded`}
+              ? "border-2 rounded-2xl border-[var(--accent-color)] text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white hover:cursor-pointer"
+              : "border-2 rounded-2xl border-[var(--accent-color)] text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white hover:cursor-pointer"
+          } text-black rounded`}
           disabled={timeLeft === 0}
         >
           {isRunning ? "Pause" : "Start"}
@@ -156,10 +156,10 @@ export default function Linear() {
 
         <button
           onClick={handleReset}
-          className="p-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full"
+          className="p-2 hover:cursor-pointer text-[var(--accent-color)] rounded-full transition-transform duration-200 hover:scale-110"
           title="Reset Timer"
         >
-          <RotateCcw className="w-5 h-5" />
+          <RotateCcw className="w-6 h-6" />
         </button>
       </div>
     </div>
