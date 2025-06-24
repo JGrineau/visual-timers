@@ -68,31 +68,34 @@ const AutoVideoSlider: React.FC = () => {
     <div className="p-2 sm:p-4">
       <h2 className="text-xl font-semibold mb-4 text-center">More Timers</h2>
 
-      <div className="flex items-center justify-center gap-2 sm:gap-4">
-        {/* Left Arrow */}
-        <button
-          onClick={handlePrev}
-          disabled={startIndex === 0}
-          className="p-2 text-gray-600 hover:text-black disabled:opacity-30 text-2xl"
-        >
-          <ArrowLeftCircle size={44} />
-        </button>
-
-        {/* Video Thumbnails */}
-        <div className={`flex gap-2 sm:gap-4`}>
+      <div className="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-4">
+        {/* Videos */}
+        <div className="flex gap-2 sm:gap-4 justify-center">
           {visibleVideos.map((url, index) => (
-            <div key={index} className="w-64 sm:w-80">
+            <div
+              key={index}
+              className="w-64 sm:w-80 aspect-video rounded-xl shadow-lg overflow-hidden"
+            >
               <YouTubeEmbed url={url} onPlay={handleVideoInteraction} />
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Right Arrow */}
+      {/* Arrows */}
+      <div className="flex justify-center gap-6 mt-4">
+        <button
+          onClick={handlePrev}
+          disabled={startIndex === 0}
+          className="p-2 text-gray-600 hover:text-black disabled:opacity-30"
+        >
+          <ArrowLeftCircle size={34} />
+        </button>
         <button
           onClick={handleNext}
-          className="p-2 text-gray-600 hover:text-black text-2xl"
+          className="p-2 text-gray-600 hover:text-black"
         >
-          <ArrowRightCircle size={44} />
+          <ArrowRightCircle size={34} />
         </button>
       </div>
     </div>
