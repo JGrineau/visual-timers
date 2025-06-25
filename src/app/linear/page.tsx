@@ -5,6 +5,7 @@ import SizeSelector from "@/components/size-selection/Page";
 import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
 import "../../app/globals.css";
+import SettingsPanel from "@/components/settings-panel/Page";
 
 export default function Linear() {
   const progressRef = useRef<SVGLineElement>(null);
@@ -161,6 +162,7 @@ export default function Linear() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
+        <SettingsPanel />
       </div>
     </div>
   );
