@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface DurationSelectorProps {
   value: number; // total time in seconds
@@ -12,18 +12,6 @@ export default function Page({ value, onChange }: DurationSelectorProps) {
     Math.floor(value / 60).toString()
   );
   const [seconds, setSeconds] = useState<string>((value % 60).toString());
-
-  // Sync internal state if `value` prop changes
-  // useEffect(() => {
-  //   setMinutes(Math.floor(value / 60));
-  //   setSeconds(value % 60);
-  // }, [value]);
-
-  // Update parent when either minutes or seconds change
-  const updateDuration = (m: number, s: number) => {
-    const total = m * 60 + s;
-    onChange(total);
-  };
 
   const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
