@@ -1,10 +1,9 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import DurationSelector from "@/components/duration-selection/Page";
-import SizeSelector from "@/components/size-selection/Page";
 import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
 import "../../app/globals.css";
+import SettingsPanel from "@/components/settings-panel/Page";
 
 export default function Linear() {
   const progressRef = useRef<SVGLineElement>(null);
@@ -97,20 +96,16 @@ export default function Linear() {
   }, [isRunning, timeLeft]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 text-black">
-      <SizeSelector size={size} onChange={setSize} />
-      <DurationSelector value={duration} onChange={setDuration} />
-
-      <Full className="bg-white w-full">
-        {/* Timer Area */}
-        <div className="mt-10 w-full max-w-[90vw] sm:max-w-[600px]">
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      {/* Timer Area */}
+      <Full className="bg-transparent">
+        <div className="w-full max-w-[90vw] sm:max-w-[600px]">
           <svg
             width="100%"
             height="40"
             viewBox={`0 0 ${size} 40`}
             preserveAspectRatio="none"
           >
-            {/* Background Line */}
             <line
               x1="0"
               y1="20"
@@ -120,7 +115,6 @@ export default function Linear() {
               strokeWidth="20"
               strokeLinecap="round"
             />
-            {/* Progress Line */}
             <line
               ref={progressRef}
               x1="0"
@@ -132,35 +126,41 @@ export default function Linear() {
               strokeLinecap="round"
             />
           </svg>
-
-          {/* Time Display */}
           <div className="text-center mt-4 text-2xl sm:text-3xl font-bold">
             {formatTime(minutes, seconds)}
           </div>
         </div>
       </Full>
 
-      {/* Controls */}
-      <div className="mt-6 flex flex-wrap justify-center gap-4">
+      {/* Control Buttons */}
+
+      <div className="flex gap-4 mt-8 items-center justify-center w-full max-w-[600px]">
         <button
           onClick={isRunning ? handleStop : handleStart}
-          className={`px-6 py-2 ${
-            isRunning
-              ? "border-2 rounded-2xl border-[var(--accent-color)] text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white hover:cursor-pointer"
-              : "border-2 rounded-2xl border-[var(--accent-color)] text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white hover:cursor-pointer"
-          } text-black rounded`}
+          className="px-6 py-2 border-2 border-[var(--accent-color)] rounded-2xl text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white transition"
           disabled={timeLeft === 0}
         >
           {isRunning ? "Pause" : "Start"}
         </button>
-
         <button
           onClick={handleReset}
-          className="p-2 hover:cursor-pointer text-[var(--accent-color)] rounded-full transition-transform duration-200 hover:scale-110"
+          className="p-2 text-[var(--accent-color)] rounded-full hover:scale-110 transition-transform duration-200"
           title="Reset Timer"
         >
           <RotateCcw className="w-6 h-6" />
         </button>
+        <SettingsPanel
+          size={size}
+          duration={duration}
+          onApply={(newSize, newDuration) => {
+            setSize(newSize);
+            setDuration(newDuration);
+            setTimeLeft(newDuration); // reset timer with new duration
+            if (progressRef.current) {
+              progressRef.current.setAttribute("x2", "0"); // reset progress line
+            }
+          }}
+        />
       </div>
     </div>
   );

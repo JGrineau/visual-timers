@@ -1,35 +1,76 @@
 "use client";
 
+import { useState } from "react";
+
 interface DurationSelectorProps {
-  value: number;
+  value: number; // total time in seconds
   onChange: (value: number) => void;
 }
 
-export default function DurationSelector({
-  value,
-  onChange,
-}: DurationSelectorProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newValue = parseInt(e.target.value);
-    onChange(newValue);
+export default function Page({ value, onChange }: DurationSelectorProps) {
+  const [minutes, setMinutes] = useState<string>(
+    Math.floor(value / 60).toString()
+  );
+  const [seconds, setSeconds] = useState<string>((value % 60).toString());
+
+  const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    if (/^\d*$/.test(raw)) {
+      setMinutes(raw);
+      const parsed = parseInt(raw || "0", 10);
+      const sec = parseInt(seconds || "0", 10);
+      onChange(parsed * 60 + sec);
+    }
+  };
+
+  const handleSecondsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    if (/^\d*$/.test(raw)) {
+      let parsed = parseInt(raw || "0", 10);
+      if (parsed > 59) parsed = 59;
+      setSeconds(raw);
+      const min = parseInt(minutes || "0", 10);
+      onChange(min * 60 + parsed);
+    }
   };
 
   return (
     <div className="bg-white bg-opacity-90 text-black p-4 rounded-lg shadow-lg backdrop-blur-sm">
-      <label htmlFor="duration" className="block text-sm font-semibold mb-2">
-        Timer Duration
-      </label>
-      <select
-        id="duration"
-        value={value}
-        onChange={handleChange}
-        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        <option value={60}>1 Minute</option>
-        <option value={300}>5 Minutes</option>
-        <option value={600}>10 Minutes</option>
-        <option value={900}>15 Minutes</option>
-      </select>
+      <label className="block text-sm font-semibold mb-2">Timer Duration</label>
+      <div className="flex gap-4 items-center">
+        <div className="flex flex-col">
+          <label htmlFor="minutes" className="text-xs mb-1">
+            Minutes
+          </label>
+          <input
+            className="w-24 sm:w-40 border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            id="minutes"
+            type="number"
+            min={0}
+            value={minutes}
+            placeholder="0"
+            onChange={handleMinutesChange}
+            onFocus={() => minutes === "0" && setMinutes("")}
+          />
+        </div>
+
+        <div className="flex flex-col ">
+          <label htmlFor="seconds" className="text-xs mb-1">
+            Seconds
+          </label>
+          <input
+            className="w-24 sm:w-40 border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            id="seconds"
+            type="number"
+            min={0}
+            max={59}
+            value={seconds}
+            placeholder="0"
+            onChange={handleSecondsChange}
+            onFocus={() => seconds === "0" && setSeconds("")}
+          />
+        </div>
+      </div>
     </div>
   );
 }

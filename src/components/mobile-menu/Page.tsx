@@ -27,7 +27,7 @@ export default function Page({
   }
 
   return createPortal(
-    <div className="fixed inset-0 bg-(--primary-color) text-white flex flex-col p-4 transition-all duration-300 pt-20">
+    <div className="fixed inset-0 bg-(--primary-color) z-2 text-white flex flex-col p-4 transition-all duration-300 pt-20">
       <button
         className="fixed top-4 left-4 z-99999 flex md:hidden bg-[var(--primary-color)] text-white p-2 rounded-full shadow-lg hover:bg-[var(--accent-color)] transition"
         onClick={() => setOpen(!open)}
