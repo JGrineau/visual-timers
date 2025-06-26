@@ -1,7 +1,8 @@
+// app/layout.tsx (server component)
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/side-bar/Page";
+import ClientLayout from "./clientLayout"; // 👈 will hold sidebar state
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,14 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen overflow-auto">
-          <div className="flex min-h-screen">
-            <Sidebar />
-          </div>
-          <main className="flex-1 bg-white transition-all duration-300">
-            {children}
-          </main>
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

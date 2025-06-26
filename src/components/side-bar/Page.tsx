@@ -16,12 +16,17 @@ import { useState } from "react";
 
 import MobileMenu from "../mobile-menu/Page";
 
-export default function Page() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+type Props = {
+  isCollapsed: boolean;
+  setIsCollapsed: (value: boolean) => void;
+};
+
+export default function Page({ isCollapsed, setIsCollapsed }: Props) {
+  // const [isCollapsed, setIsCollapsed] = useState(false);
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
+    <div className="flex min-h-screen fixed">
       <aside
         className={`hidden lg:flex h-screen bg-(--primary-color) text-white flex-col p-4 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
