@@ -1,7 +1,5 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import DurationSelector from "@/components/duration-selection/Page";
-// import SizeSelector from "@/components/size-selection/Page";
 import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
 import "../../app/globals.css";

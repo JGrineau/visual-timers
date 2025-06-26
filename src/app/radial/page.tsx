@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import DurationSelector from "@/components/duration-selection/Page";
-import SizeSelector from "@/components/size-selection/Page";
-import Full from "@/components/full-screen/Page";
+import SettingsPanel from "@/components/settings-panel/Page";
+import FullScreen from "@/components/full-screen/Page";
 import { RotateCcw } from "lucide-react";
 import "../../app/globals.css";
 
@@ -106,18 +105,9 @@ export default function RadialTimer() {
   }, [isRunning, timeLeft]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-2 gap-6">
-      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-md">
-        {/* Size Selector */}
-        <SizeSelector size={size} onChange={setSize} />
-
-        {/* Duration Selector */}
-        <DurationSelector value={duration} onChange={setDuration} />
-      </div>
-
+    <div className="flex flex-col items-center justify-center min-h-screen">
       {/* Timer Display */}
-      <Full className="bg-transparent">
-        {/* <h1 className="text-2xl font-bold mb-4">Radial Timer</h1> */}
+      <FullScreen className="bg-transparent">
         <div
           style={{
             width: size,
@@ -157,10 +147,10 @@ export default function RadialTimer() {
             {minutes}:{seconds.toString().padStart(2, "0")}
           </div>
         </div>
-      </Full>
+      </FullScreen>
 
-      <div className="flex items-center gap-4">
-        {/* Start / Pause Toggle Button */}
+      {/* Control Buttons */}
+      <div className="flex gap-4 mt-8 items-center justify-center w-full max-w-[600px]">
         <button
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
@@ -181,6 +171,18 @@ export default function RadialTimer() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
+        <SettingsPanel
+          size={size}
+          duration={duration}
+          onApply={(newSize, newDuration) => {
+            setSize(newSize);
+            setDuration(newDuration);
+            setTimeLeft(newDuration); // reset timer with new duration
+            if (progressRef.current) {
+              progressRef.current.setAttribute("x2", "0"); // reset progress line
+            }
+          }}
+        />
       </div>
     </div>
   );

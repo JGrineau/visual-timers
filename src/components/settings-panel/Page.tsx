@@ -40,7 +40,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
       {/* Settings Icon Button */}
       <button
         onClick={togglePanel}
-        className="p-2 text-[var(--accent-color)] hover:scale-110 hover:cursor-pointer transition-transform duration-200"
+        className="p-2 text-[var(--accent-color)] hover:scale-110 hover:cursor-pointer transition duration-300"
         title="Settings"
         aria-label="Open Settings"
       >
@@ -59,17 +59,19 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
         >
           {/* Modal Content */}
           <div
-            className="bg-white border rounded-lg p-6 max-w-md w-[90vw] relative"
+            className="bg-white border rounded-lg p-4 max-w-md w-[90vw] relative flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
-            <button
-              onClick={closePanel}
-              className="absolute top-3 right-3 p-1 rounded hover:bg-gray-200 hover:cursor-pointer transition"
-              aria-label="Close Settings"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="w-full flex justify-end">
+              <button
+                onClick={closePanel}
+                className="p-1 rounded hover:bg-gray-200 hover:cursor-pointer transition"
+                aria-label="Close Settings"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
             <h2
               id="settings-title"
@@ -79,7 +81,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
             </h2>
 
             {/* Size Selection */}
-            <div className="mb-4">
+            <div className="mb-4 hidden xl:block">
               <SizeSelection size={tempSize} onChange={setTempSize} />
             </div>
 
@@ -92,7 +94,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
             </div>
 
             {/* Apply Button */}
-            <div className="flex justify-end">
+            <div className="flex justify-end w-full">
               <button
                 onClick={handleApply}
                 className="px-6 py-2 border-2 border-[var(--accent-color)] rounded-2xl text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white transition"
