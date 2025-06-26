@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import DurationSelector from "@/components/duration-selection/Page";
-import SizeSelector from "@/components/size-selection/Page";
+// import SizeSelector from "@/components/size-selection/Page";
 import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
 import "../../app/globals.css";
@@ -100,37 +100,39 @@ export default function Linear() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       {/* Timer Area */}
-      <div className="w-full max-w-[90vw] sm:max-w-[600px]">
-        <svg
-          width="100%"
-          height="40"
-          viewBox={`0 0 ${size} 40`}
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="20"
-            x2={size}
-            y2="20"
-            stroke="gray"
-            strokeWidth="20"
-            strokeLinecap="round"
-          />
-          <line
-            ref={progressRef}
-            x1="0"
-            y1="20"
-            x2="0"
-            y2="20"
-            stroke="var(--accent-color)"
-            strokeWidth="20"
-            strokeLinecap="round"
-          />
-        </svg>
-        <div className="text-center mt-4 text-2xl sm:text-3xl font-bold">
-          {formatTime(minutes, seconds)}
+      <Full className="bg-transparent">
+        <div className="w-full max-w-[90vw] sm:max-w-[600px]">
+          <svg
+            width="100%"
+            height="40"
+            viewBox={`0 0 ${size} 40`}
+            preserveAspectRatio="none"
+          >
+            <line
+              x1="0"
+              y1="20"
+              x2={size}
+              y2="20"
+              stroke="gray"
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <line
+              ref={progressRef}
+              x1="0"
+              y1="20"
+              x2="0"
+              y2="20"
+              stroke="var(--accent-color)"
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+          </svg>
+          <div className="text-center mt-4 text-2xl sm:text-3xl font-bold">
+            {formatTime(minutes, seconds)}
+          </div>
         </div>
-      </div>
+      </Full>
 
       {/* Control Buttons */}
 
@@ -149,7 +151,18 @@ export default function Linear() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
-        <SettingsPanel />
+        <SettingsPanel
+          size={size}
+          duration={duration}
+          onApply={(newSize, newDuration) => {
+            setSize(newSize);
+            setDuration(newDuration);
+            setTimeLeft(newDuration); // reset timer with new duration
+            if (progressRef.current) {
+              progressRef.current.setAttribute("x2", "0"); // reset progress line
+            }
+          }}
+        />
       </div>
     </div>
   );

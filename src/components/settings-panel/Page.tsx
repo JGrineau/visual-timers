@@ -2,12 +2,38 @@
 
 import React, { useState } from "react";
 import { Settings, X } from "lucide-react";
+import SizeSelection from "@/components/size-selection/Page";
+import DurationSelector from "@/components/duration-selection/Page";
+import "../../app/globals.css";
 
-const SettingsPanel = () => {
+interface SettingsPanelProps {
+  size: number;
+  duration: number;
+  onApply: (size: number, duration: number) => void;
+}
+
+const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Local temporary states
+  const [tempSize, setTempSize] = useState(size);
+  const [tempDuration, setTempDuration] = useState(duration);
 
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
+
+  // Reset temp states when opening
+  React.useEffect(() => {
+    if (isOpen) {
+      setTempSize(size);
+      setTempDuration(duration);
+    }
+  }, [isOpen, size, duration]);
+
+  const handleApply = () => {
+    onApply(tempSize, tempDuration);
+    closePanel();
+  };
 
   return (
     <>
@@ -24,7 +50,7 @@ const SettingsPanel = () => {
       {/* Modal Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-transparent backdrop-blur-sm  flex items-center justify-center z-50"
+          className="fixed inset-0 bg-transparent backdrop-blur-sm flex items-center justify-center z-50"
           onClick={closePanel}
           aria-modal="true"
           role="dialog"
@@ -33,13 +59,13 @@ const SettingsPanel = () => {
         >
           {/* Modal Content */}
           <div
-            className="bg-white border-1 rounded-lg p-6 max-w-md w-[90vw] relative"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            className="bg-white border rounded-lg p-6 max-w-md w-[90vw] relative"
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={closePanel}
-              className="absolute top-3 right-3 p-1 rounded hover:bg-gray-200 transition"
+              className="absolute top-3 right-3 p-1 rounded hover:bg-gray-200 hover:cursor-pointer transition"
               aria-label="Close Settings"
             >
               <X className="w-5 h-5" />
@@ -54,40 +80,25 @@ const SettingsPanel = () => {
 
             {/* Size Selection */}
             <div className="mb-4">
-              <label
-                htmlFor="size-select"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Size
-              </label>
-              <select
-                id="size-select"
-                className="w-full p-2 border rounded"
-                defaultValue="Medium"
-              >
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-              </select>
+              <SizeSelection size={tempSize} onChange={setTempSize} />
             </div>
 
             {/* Duration Selection */}
-            <div>
-              <label
-                htmlFor="duration-select"
-                className="block text-sm font-medium text-gray-700 mb-1"
+            <div className="mb-4">
+              <DurationSelector
+                value={tempDuration}
+                onChange={setTempDuration}
+              />
+            </div>
+
+            {/* Apply Button */}
+            <div className="flex justify-end">
+              <button
+                onClick={handleApply}
+                className="px-6 py-2 border-2 border-[var(--accent-color)] rounded-2xl text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white transition"
               >
-                Duration
-              </label>
-              <select
-                id="duration-select"
-                className="w-full p-2 border rounded"
-                defaultValue="30 minutes"
-              >
-                <option>15 minutes</option>
-                <option>30 minutes</option>
-                <option>1 hour</option>
-              </select>
+                Apply Settings
+              </button>
             </div>
           </div>
         </div>
@@ -95,5 +106,4 @@ const SettingsPanel = () => {
     </>
   );
 };
-
-export default SettingsPanel;
+export default Page;
