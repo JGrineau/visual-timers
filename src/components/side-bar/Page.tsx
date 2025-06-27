@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import React from "react";
 
-import MobileMenu from "../mobile-menu/Page";
+// import MobileMenu from "../mobile-menu/Page";
 
 type Props = {
   isCollapsed: boolean;
@@ -96,7 +96,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           </Link>
         </nav>
       </aside>
-      <MobileMenu />
+      {/* <MobileMenu /> */}
     </div>
   );
 }
