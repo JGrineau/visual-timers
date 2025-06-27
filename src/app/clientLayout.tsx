@@ -15,7 +15,7 @@ export default function ClientLayout({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen">
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setMenuOpen(true)}
