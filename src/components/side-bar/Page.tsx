@@ -9,19 +9,19 @@ import {
   Clock,
   CircleChevronLeft,
   HomeIcon,
-  XCircle,
 } from "lucide-react";
 import React from "react";
-import { useState } from "react";
 
 import MobileMenu from "../mobile-menu/Page";
 
-export default function Page() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [open, setOpen] = useState(false);
+type Props = {
+  isCollapsed: boolean;
+  setIsCollapsed: (value: boolean) => void;
+};
 
+export default function Page({ isCollapsed, setIsCollapsed }: Props) {
   return (
-    <div>
+    <div className="flex min-h-screen fixed">
       <aside
         className={`hidden lg:flex h-screen bg-(--primary-color) text-white flex-col p-4 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
@@ -96,16 +96,7 @@ export default function Page() {
           </Link>
         </nav>
       </aside>
-
-      {/* Mobile/Tablet Menu Button */}
-      <button
-        className="fixed top-4 left-4 z-99999 flex lg:hidden bg-[var(--primary-color)] text-white p-2 rounded-full shadow-lg hover:bg-[var(--accent-color)] transition"
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close menu" : "Open menu"}
-      >
-        {open ? <XCircle size={24} /> : <Menu size={24} />}
-      </button>
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
-    </div> //end of return
+      <MobileMenu />
+    </div>
   );
 }

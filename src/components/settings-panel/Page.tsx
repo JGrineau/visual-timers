@@ -50,7 +50,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
       {/* Modal Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-transparent backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-transparent backdrop-blur-sm backdrop-brightness-50 flex items-center justify-center z-50"
           onClick={closePanel}
           aria-modal="true"
           role="dialog"
@@ -59,7 +59,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
         >
           {/* Modal Content */}
           <div
-            className="bg-white border rounded-lg p-4 max-w-md w-[90vw] relative flex flex-col"
+            className="bg-white rounded-2xl p-4 max-w-md w-[90vw] relative flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -69,7 +69,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
                 className="p-1 rounded hover:bg-gray-200 hover:cursor-pointer transition"
                 aria-label="Close Settings"
               >
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
             </div>
 
