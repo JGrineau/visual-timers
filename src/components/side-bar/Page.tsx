@@ -11,7 +11,6 @@ import {
   HomeIcon,
 } from "lucide-react";
 import React from "react";
-import { useState } from "react";
 
 import MobileMenu from "../mobile-menu/Page";
 
