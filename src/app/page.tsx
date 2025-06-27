@@ -9,7 +9,7 @@ import "../app/globals.css";
 export default function Page() {
   return (
     <div className="flex min-h-screen mx-auto">
-      <div className="flex-1 bg-white scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 p-4">
+      <div className="flex-1 bg-white scro">
         <h1 className="text-3xl font-extrabold text-(--text-color) mb-8 text-center mt-18 md:text-4xl lg:text-6xl ">
           Visual Timers
         </h1>

@@ -103,14 +103,15 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
       </aside>
 
       {/* Mobile/Tablet Menu Button */}
-      <button
-        className="fixed top-4 left-4 z-99999 flex lg:hidden bg-[var(--primary-color)] text-white p-2 rounded-full shadow-lg hover:bg-[var(--accent-color)] transition"
+      {/* <button
+        className="fixed top-4 left-4 z-99999 flex lg:hidden p-2 text-[var(--primary-color)] transition"
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close menu" : "Open menu"}
       >
-        {open ? <XCircle size={24} /> : <Menu size={24} />}
-      </button>
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
+        {open ? <XCircle size={28} /> : <Menu size={28} />}
+      </button> */}
+      {/* <MobileMenu open={open} onClose={() => setOpen(false)} /> */}
+      <MobileMenu />
     </div> //end of return
   );
 }
