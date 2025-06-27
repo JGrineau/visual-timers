@@ -9,7 +9,6 @@ import {
   Clock,
   CircleChevronLeft,
   HomeIcon,
-  XCircle,
 } from "lucide-react";
 import React from "react";
 import { useState } from "react";
@@ -22,9 +21,6 @@ type Props = {
 };
 
 export default function Page({ isCollapsed, setIsCollapsed }: Props) {
-  // const [isCollapsed, setIsCollapsed] = useState(false);
-  const [open, setOpen] = useState(false);
-
   return (
     <div className="flex min-h-screen fixed">
       <aside
@@ -101,17 +97,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           </Link>
         </nav>
       </aside>
-
-      {/* Mobile/Tablet Menu Button */}
-      {/* <button
-        className="fixed top-4 left-4 z-99999 flex lg:hidden p-2 text-[var(--primary-color)] transition"
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close menu" : "Open menu"}
-      >
-        {open ? <XCircle size={28} /> : <Menu size={28} />}
-      </button> */}
-      {/* <MobileMenu open={open} onClose={() => setOpen(false)} /> */}
       <MobileMenu />
-    </div> //end of return
+    </div>
   );
 }
