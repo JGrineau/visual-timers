@@ -15,6 +15,7 @@ export default function ClientLayout({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
+    // ...existing code...
     <div className="relative h-screen">
       {/* Mobile Toggle Button */}
       <button
@@ -28,15 +29,24 @@ export default function ClientLayout({
       {/* Mobile Menu with animation */}
       <MobileMenu open={menuOpen} setOpen={setMenuOpen} />
 
+      {/* Sidebar - fixed on large screens */}
+      <div className="hidden lg:block">
+        <div
+          className={`fixed top-0 left-0 h-screen transition-all duration-300 z-20 ${
+            isCollapsed ? "w-16" : "w-64"
+          }`}
+        >
+          <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+        </div>
+      </div>
+
       {/* Main Layout */}
       <div
         className="flex h-full transition-transform duration-300 ease-in-out"
         style={{
-          transform: menuOpen ? "translateX(16rem)" : "translateX(0)", // 16rem = 256px (w-64)
+          transform: menuOpen ? "translateX(16rem)" : "translateX(0)",
         }}
       >
-        <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
-
         <main
           className={`flex-1 bg-white transition-all duration-300 min-h-screen ${
             isCollapsed ? "lg:ml-16" : "lg:ml-64"
@@ -46,5 +56,6 @@ export default function ClientLayout({
         </main>
       </div>
     </div>
+    // ...existing code...
   );
 }

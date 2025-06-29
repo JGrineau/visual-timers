@@ -14,20 +14,30 @@ export default function Page() {
           Visual Timers
         </h1>
 
-        <h2 className="text-lg font-semibold text-gray-800 mb-2 text-center md:text-2xl lg:text-4xl">
+        {/* <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center md:text-xl lg:text-2xl">
           Welcome to the Visual Timers application
-        </h2>
+        </h3> */}
         <p className="text-center text-md m-2 px-4 mt-2 md:text-lg lg:text-xl text-gray-600">
           This is a Next.js application designed to help you visualize time
           through various timer components.
           <br />
           You can explore different timer types and their functionalities. Check
-          out my YouTube page where I upload custom timers and visualizations.
+          out my
+          <a
+            href="https://www.youtube.com/@visual-timers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            {" "}
+            YouTube{" "}
+          </a>
+          page where I upload custom timers and visualizations.
         </p>
 
-        <h1 className="text-lg font-bold mb-4 text-center md:text-2xl lg:text-4xl mt-5">
+        <h3 className="text-lg font-bold mb-4 text-center md:text-xl lg:text-2xl mt-5">
           Featured Video Of The Day
-        </h1>
+        </h3>
         <div className="flex justify-center mb-8 m-4">
           <YouTubeEmbed url="https://www.youtube.com/watch?v=Fu4q274II08&t=75s" />
         </div>

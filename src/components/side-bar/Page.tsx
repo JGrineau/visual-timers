@@ -23,19 +23,19 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
   return (
     <div className="flex min-h-screen fixed">
       <aside
-        className={`hidden lg:flex h-screen bg-(--primary-color) text-white flex-col p-4 transition-all duration-300 
+        className={`hidden lg:flex h-screen bg-[var(--primary-color)] text-white flex-col p-4 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
       >
         {/* Collapse Button */}
         <button
-          className="mb-6 text-white hover:text-(--accent-color) flex items-center space-x-2"
+          className="mb-6 text-[var{--primary-color}] hover:text-(--accent-color) flex items-center justify-start space-x-2"
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
-            <Menu size={24} />
+            <Menu size={28} />
           ) : (
             <>
-              <CircleChevronLeft size={24} />
+              <CircleChevronLeft size={28} />
               <span className="text-sm font-semibold">Visual Types</span>
             </>
           )}
