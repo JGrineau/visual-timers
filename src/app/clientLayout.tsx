@@ -15,7 +15,6 @@ export default function ClientLayout({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    // ...existing code...
     <div className="relative h-screen">
       {/* Mobile Toggle Button */}
       <button
@@ -26,10 +25,9 @@ export default function ClientLayout({
         <Menu size={28} className="text-[var(--primary-color)]" />
       </button>
 
-      {/* Mobile Menu with animation */}
       <MobileMenu open={menuOpen} setOpen={setMenuOpen} />
 
-      {/* Sidebar - fixed on large screens */}
+      {/* Sidebar */}
       <div className="hidden lg:block">
         <div
           className={`fixed top-0 left-0 h-screen transition-all duration-300 z-20 ${
@@ -56,6 +54,5 @@ export default function ClientLayout({
         </main>
       </div>
     </div>
-    // ...existing code...
   );
 }

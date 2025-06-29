@@ -14,9 +14,6 @@ export default function Page() {
           Visual Timers
         </h1>
 
-        {/* <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center md:text-xl lg:text-2xl">
-          Welcome to the Visual Timers application
-        </h3> */}
         <p className="text-center text-md m-2 px-4 mt-2 md:text-lg lg:text-xl text-gray-600">
           This is a Next.js application designed to help you visualize time
           through various timer components.
