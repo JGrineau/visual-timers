@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Sidebar from "@/components/side-bar/Page";
 import MobileMenu from "@/components/mobile-menu/Page";
 import { Menu } from "lucide-react";
+import DarkMode from "@/components/dark-mode/Page";
 
 export default function ClientLayout({
   children,
@@ -16,6 +17,9 @@ export default function ClientLayout({
 
   return (
     <div className="relative h-screen">
+      {/* <div className="fixed top-4 right-4 z-30">
+        <DarkMode />
+      </div> */}
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setMenuOpen(true)}
