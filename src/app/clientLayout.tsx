@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Sidebar from "@/components/side-bar/Page";
 import MobileMenu from "@/components/mobile-menu/Page";
 import { Menu } from "lucide-react";
+import DarkMode from "@/components/dark-mode/Page";
 
 export default function ClientLayout({
   children,
@@ -50,6 +51,7 @@ export default function ClientLayout({
             isCollapsed ? "lg:ml-16" : "lg:ml-64"
           }`}
         >
+          <DarkMode />
           {children}
         </main>
       </div>
