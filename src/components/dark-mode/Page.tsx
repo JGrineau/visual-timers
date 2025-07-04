@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MoonStar, Sun } from "lucide-react";
-import "@/app/globals.css"; // Ensure your global styles are imported
+import "@/app/globals.css";
 
 export default function Page() {
   const [isDark, setIsDark] = useState(false);
