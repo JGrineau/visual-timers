@@ -33,8 +33,10 @@ export default function Page() {
   };
 
   return (
-    <button onClick={toggleDark} aria-label="Toggle dark mode">
-      {isDark ? <MoonStar /> : <Sun />}
-    </button>
+    <div className="fixed top-4 right-4 z-30">
+      <button onClick={toggleDark} aria-label="Toggle dark mode">
+        {isDark ? <MoonStar /> : <Sun />}
+      </button>
+    </div>
   );
 }

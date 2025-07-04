@@ -17,9 +17,6 @@ export default function ClientLayout({
 
   return (
     <div className="relative h-screen">
-      {/* <div className="fixed top-4 right-4 z-30">
-        <DarkMode />
-      </div> */}
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setMenuOpen(true)}
@@ -54,6 +51,7 @@ export default function ClientLayout({
             isCollapsed ? "lg:ml-16" : "lg:ml-64"
           }`}
         >
+          <DarkMode />
           {children}
         </main>
       </div>
