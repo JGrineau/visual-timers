@@ -32,9 +32,18 @@ export default function Page() {
     }
   };
 
+  // const toggleDark = () => {
+  //   setIsDark(!isDark);
+  //   document.documentElement.classList.toggle("dark", !isDark);
+  // };
+
   return (
     <div className="fixed top-4 right-4 z-30">
-      <button onClick={toggleDark} aria-label="Toggle dark mode">
+      <button
+        onClick={toggleDark}
+        aria-label="Toggle dark mode"
+        className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-110"
+      >
         {isDark ? <MoonStar /> : <Sun />}
       </button>
     </div>
