@@ -44,7 +44,7 @@ export default function Page() {
         aria-label="Toggle dark mode"
         className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-110"
       >
-        {isDark ? <MoonStar /> : <Sun />}
+        {isDark ? <Sun /> : <MoonStar />}
       </button>
     </div>
   );

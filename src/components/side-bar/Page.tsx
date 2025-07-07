@@ -21,7 +21,7 @@ type Props = {
 
 export default function Page({ isCollapsed, setIsCollapsed }: Props) {
   return (
-    <div className="flex min-h-screen fixed">
+    <div className="flex min-h-screen fixed shadow-xl/20 ">
       <aside
         className={`hidden lg:flex h-screen bg-background text-text border-primary border-solid flex-col p-4 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
