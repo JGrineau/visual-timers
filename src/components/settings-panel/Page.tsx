@@ -40,7 +40,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
       {/* Settings Icon Button */}
       <button
         onClick={togglePanel}
-        className="p-2 text-[var(--accent-color)] hover:scale-110 hover:cursor-pointer transition duration-300"
+        className="p-2 text-accent hover:scale-110 hover:cursor-pointer transition duration-300"
         title="Settings"
         aria-label="Open Settings"
       >

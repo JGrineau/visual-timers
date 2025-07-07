@@ -49,7 +49,7 @@ export default function FullscreenTimer({
       {!isFullscreen && (
         <button
           onClick={toggleFullscreen}
-          className="absolute bottom-10 right-10 p-4 bg-white text-[var(--accent-color)] rounded-full shadow-xl/30 hover:bg-gray-100 hover:scale-110 hover:cursor-pointer hidden md:flex"
+          className="absolute bottom-10 right-10 p-4 bg-white text-accent rounded-full shadow-xl/30 hover:bg-gray-100 hover:scale-110 hover:cursor-pointer hidden md:flex"
           aria-label="Enter Fullscreen"
         >
           <Maximize size={24} />

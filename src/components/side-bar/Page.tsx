@@ -23,12 +23,12 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
   return (
     <div className="flex min-h-screen fixed">
       <aside
-        className={`hidden lg:flex h-screen bg-[var(--primary-color)] text-text flex-col p-4 transition-all duration-300 
+        className={`hidden lg:flex h-screen bg-background text-text border-primary border-solid flex-col p-4 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
       >
         {/* Collapse Button */}
         <button
-          className="mb-6 text-text hover:text-(--accent-color) flex items-center justify-start space-x-2 cursor-pointer"
+          className="mb-6 text-text hover:text-accent flex items-center justify-start space-x-2 cursor-pointer"
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
@@ -47,7 +47,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
         <nav className="flex flex-col space-y-4">
           <Link
             href="/"
-            className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+            className="flex items-center space-x-2 hover:bg-accent p-2 rounded transition"
           >
             <HomeIcon size={20} />
             {!isCollapsed && <span>Home</span>}
@@ -56,7 +56,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           <div className="relative">
             <Link
               href="/pomodoro"
-              className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+              className="flex items-center space-x-2 hover:bg-accent p-2 rounded transition"
             >
               <Timer size={20} />
               {!isCollapsed && <span>Pomodoro</span>}
@@ -70,14 +70,14 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
 
           <Link
             href="/linear"
-            className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+            className="flex items-center space-x-2 hover:bg-accent p-2 rounded transition"
           >
             <LineChart size={20} />
             {!isCollapsed && <span>Linear</span>}
           </Link>
           <Link
             href="/radial"
-            className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+            className="flex items-center space-x-2 hover:bg-accent p-2 rounded transition"
           >
             <Circle size={20} />
             {!isCollapsed && <span>Radial</span>}
@@ -98,7 +98,6 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           </Link>
         </nav>
       </aside>
-      {/* <MobileMenu /> */}
     </div>
   );
 }

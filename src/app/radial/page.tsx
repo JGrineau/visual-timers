@@ -132,7 +132,7 @@ export default function RadialTimer() {
               cy={size / 2}
               r={RADIUS}
               fill="none"
-              stroke="var(--accent-color)"
+              stroke="var(--accent)"
               strokeWidth="20"
               strokeLinecap="round"
               strokeDasharray={FULL_DASH_ARRAY}
