@@ -54,7 +54,9 @@ export default function ClientLayout({
             isCollapsed ? "lg:ml-16" : "lg:ml-64"
           }`}
         >
-          <DarkMode />
+          <div className="sticky top-0 z-30 flex items-center justify-end p-4 ">
+            <DarkMode />
+          </div>
           {children}
         </main>
       </div>

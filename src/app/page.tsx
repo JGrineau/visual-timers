@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <div className="flex min-h-screen mx-auto">
       <div className="flex-1 bg-background scroll">
-        <h1 className="text-3xl font-extrabold text-(--text-color) mb-8 text-center mt-18 md:text-4xl lg:text-6xl ">
+        <h1 className="text-3xl font-extrabold text-(--text-color) mb-8 text-center md:text-4xl lg:text-6xl ">
           Visual Timers
         </h1>
 

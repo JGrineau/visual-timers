@@ -62,7 +62,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
               {!isCollapsed && <span>Pomodoro</span>}
             </Link>
             {!isCollapsed && (
-              <span className="absolute -top-2 left-20 bg-yellow-400 text-black text-xs font-semibold px-2 py-0.5 rounded">
+              <span className="absolute -top-2 left-20 bg-yellow-400 text-text text-xs font-semibold px-2 py-0.5 rounded">
                 Coming Soon
               </span>
             )}
