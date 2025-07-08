@@ -13,7 +13,7 @@
 /* ========== Root Theme Variables ========== */
 :root {
   --background: #ffffff;
-  --foreground: #131313;
+  --foreground: #1f1f1f;
 
   --primary: #0b5470; /* Deep blue/teal (logo primary) */
   --accent: #00acc1; /* Bright teal (highlight/accent) */
@@ -29,7 +29,7 @@
 
 /* ========== Dark Mode Variables ========== */
 html.dark {
-  --background: #131313;
+  --background: #1f1e1e;
   --foreground: #ededed;
 
   --primary: #0b5470;

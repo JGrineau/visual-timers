@@ -33,11 +33,11 @@ export default function Page() {
   };
 
   return (
-    <div className="z-30 sticky flex items-center gap-2 justify-end">
+    <div className=" sticky flex items-center gap-2 justify-end">
       <button
         onClick={toggleDark}
         aria-label="Toggle dark mode"
-        className="justify-end p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-110"
+        className="justify-end p-2 text-text transition-colors duration-300 cursor-pointer hover:scale-110"
       >
         {isDark ? <Sun /> : <MoonStar />}
       </button>

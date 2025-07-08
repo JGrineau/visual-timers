@@ -16,7 +16,6 @@ export default function ClientLayout({
 }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
 
   return (
     <div className="relative h-screen">
