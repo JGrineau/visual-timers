@@ -9,12 +9,12 @@ import "../app/globals.css";
 export default function Page() {
   return (
     <div className="flex min-h-screen mx-auto">
-      <div className="flex-1 bg-white scro">
-        <h1 className="text-3xl font-extrabold text-(--text-color) mb-8 text-center mt-18 md:text-4xl lg:text-6xl ">
+      <div className="flex-1 bg-background scroll">
+        <h1 className="text-3xl font-extrabold text-(--text-color) mb-8 text-center md:text-4xl lg:text-6xl ">
           Visual Timers
         </h1>
 
-        <p className="text-center text-md m-2 px-4 mt-2 md:text-lg lg:text-xl text-gray-600">
+        <p className="text-center text-md m-2 px-4 mt-2 md:text-lg lg:text-xl text-(--text-color)">
           This is a Next.js application designed to help you visualize time
           through various timer components.
           <br />

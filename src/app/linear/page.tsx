@@ -121,7 +121,7 @@ export default function Linear() {
               y1="20"
               x2="0"
               y2="20"
-              stroke="var(--accent-color)"
+              stroke="var(--accent)"
               strokeWidth="20"
               strokeLinecap="round"
             />
@@ -137,14 +137,14 @@ export default function Linear() {
       <div className="flex gap-4 mt-8 items-center justify-center w-full max-w-[600px]">
         <button
           onClick={isRunning ? handleStop : handleStart}
-          className="px-6 py-2 border-2 border-[var(--accent-color)] rounded-2xl text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white transition"
+          className="px-6 py-2 border-2 border-accent rounded-2xl text-text bg-transparent hover:bg-accent hover:text-white transition"
           disabled={timeLeft === 0}
         >
           {isRunning ? "Pause" : "Start"}
         </button>
         <button
           onClick={handleReset}
-          className="p-2 text-[var(--accent-color)] rounded-full hover:scale-110 transition-transform duration-200"
+          className="p-2 text-accent rounded-full hover:scale-110 transition-transform duration-200"
           title="Reset Timer"
         >
           <RotateCcw className="w-6 h-6" />

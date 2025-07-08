@@ -40,7 +40,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
       {/* Settings Icon Button */}
       <button
         onClick={togglePanel}
-        className="p-2 text-[var(--accent-color)] hover:scale-110 hover:cursor-pointer transition duration-300"
+        className="p-2 text-text hover:scale-110 hover:cursor-pointer transition duration-300"
         title="Settings"
         aria-label="Open Settings"
       >
@@ -97,7 +97,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
             <div className="flex justify-end w-full">
               <button
                 onClick={handleApply}
-                className="px-6 py-2 border-2 border-[var(--accent-color)] rounded-2xl text-black bg-transparent hover:bg-[var(--accent-color)] hover:text-white transition"
+                className="px-6 py-2 border-2 border-accent rounded-2xl text-text bg-transparent hover:bg-accent hover:text-text transition cursor-pointer"
               >
                 Apply Settings
               </button>

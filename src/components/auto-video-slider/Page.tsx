@@ -87,13 +87,13 @@ const AutoVideoSlider: React.FC = () => {
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className="p-2 text-gray-600 hover:text-black disabled:opacity-30"
+          className="p-2 text-text hover:scale-110 hover:cursor-pointer"
         >
           <ArrowLeftCircle size={34} />
         </button>
         <button
           onClick={handleNext}
-          className="p-2 text-gray-600 hover:text-black"
+          className="p-2 text-text hover:scale-110 hover:cursor-pointer"
         >
           <ArrowRightCircle size={34} />
         </button>

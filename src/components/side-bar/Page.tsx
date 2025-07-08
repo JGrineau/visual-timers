@@ -20,15 +20,17 @@ type Props = {
 };
 
 export default function Page({ isCollapsed, setIsCollapsed }: Props) {
+  const navItemAlignment = isCollapsed ? "justify-center" : "justify-start";
+
   return (
-    <div className="flex min-h-screen fixed">
+    <div className="flex min-h-screen fixed shadow-xl/20 ">
       <aside
-        className={`hidden lg:flex h-screen bg-[var(--primary-color)] text-white flex-col p-4 transition-all duration-300 
+        className={`hidden lg:flex h-screen bg-background text-text border-primary border-solid flex-col p-2 transition-all duration-300 
         ${isCollapsed ? "w-16" : "w-64"}`}
       >
         {/* Collapse Button */}
         <button
-          className="mb-6 text-[var{--primary-color}] hover:text-(--accent-color) flex items-center justify-start space-x-2"
+          className={`mb-6 text-text hover:text-accent flex ${navItemAlignment} space-x-2 cursor-pointer`}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
@@ -36,16 +38,18 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           ) : (
             <>
               <CircleChevronLeft size={28} />
-              <span className="text-sm font-semibold">Visual Types</span>
+              <span className="text-sm font-semibold cursor-pointer">
+                Visual Types
+              </span>
             </>
           )}
         </button>
 
         {/* Navigation Links */}
-        <nav className="flex flex-col space-y-4">
+        <nav className="flex flex-col gap-4">
           <Link
             href="/"
-            className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-accent p-2 rounded transition`}
           >
             <HomeIcon size={20} />
             {!isCollapsed && <span>Home</span>}
@@ -54,13 +58,13 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           <div className="relative">
             <Link
               href="/pomodoro"
-              className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+              className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-accent p-2 rounded transition`}
             >
               <Timer size={20} />
               {!isCollapsed && <span>Pomodoro</span>}
             </Link>
             {!isCollapsed && (
-              <span className="absolute -top-2 left-20 bg-yellow-400 text-black text-xs font-semibold px-2 py-0.5 rounded">
+              <span className="absolute -top-2 left-20 bg-yellow-400 text-text text-xs font-semibold px-2 py-0.5 rounded">
                 Coming Soon
               </span>
             )}
@@ -68,23 +72,23 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
 
           <Link
             href="/linear"
-            className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-accent p-2 rounded transition`}
           >
             <LineChart size={20} />
             {!isCollapsed && <span>Linear</span>}
           </Link>
           <Link
             href="/radial"
-            className="flex items-center space-x-2 hover:bg-(--accent-color) p-2 rounded transition"
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-accent p-2 rounded transition`}
           >
             <Circle size={20} />
             {!isCollapsed && <span>Radial</span>}
           </Link>
           <Link
             href="/custom"
-            className="flex flex-col items-start hover:bg-gray-700 p-2 rounded transition"
+            className={`flex flex-col ${navItemAlignment} hover:bg-gray-700 p-2 rounded transition`}
           >
-            <div className="flex items-center space-x-2">
+            <div className={`flex items-center ${navItemAlignment} space-x-2`}>
               <Clock size={20} />
               {!isCollapsed && <span>Custom</span>}
             </div>
@@ -96,7 +100,6 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           </Link>
         </nav>
       </aside>
-      {/* <MobileMenu /> */}
     </div>
   );
 }

@@ -8,11 +8,13 @@ export default function Page({ size, onChange }: SizeSelectorProps) {
   return (
     <div>
       {/* <div className="bg-white bg-opacity-90 text-black p-5 rounded-lg shadow-lg backdrop-blur-sm hidden md:block"> */}
-      <label className="block text-sm font-semibold mb-2">Timer Size</label>
+      <label className="block text-sm font-semibold mb-2 cursor-pointer">
+        Timer Size
+      </label>
       <select
         value={size}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
       >
         <option value={400}>Small</option>
         <option value={500}>Medium</option>
