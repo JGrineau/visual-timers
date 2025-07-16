@@ -43,7 +43,7 @@ export default function Page({ value, onChange }: DurationSelectorProps) {
             Minutes
           </label>
           <input
-            className="w-24 sm:w-40 border border-border rounded-md px-2 py-1 focus:outline-none "
+            className="w-24 sm:w-40 border border-border rounded-md px-2 py-1 focus:outline-none bg-background-light"
             id="minutes"
             type="number"
             min={0}
@@ -59,7 +59,7 @@ export default function Page({ value, onChange }: DurationSelectorProps) {
             Seconds
           </label>
           <input
-            className="w-24 sm:w-40 border border-border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-background-light w-24 sm:w-40 border border-border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
             id="seconds"
             type="number"
             min={0}

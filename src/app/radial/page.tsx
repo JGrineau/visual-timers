@@ -155,8 +155,8 @@ export default function RadialTimer() {
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
             isRunning
-              ? "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
-              : "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
+              ? "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-primary hover:text-white hover:cursor-pointer"
+              : "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-primary hover:text-white hover:cursor-pointer"
           } text-black rounded`}
           disabled={timeLeft === 0}
         >

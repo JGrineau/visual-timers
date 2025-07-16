@@ -36,7 +36,7 @@ export default function MobileMenu({ open, setOpen }: Props) {
 
       {/* Slide-in Panel */}
       <div
-        className={`absolute top-0 left-0 h-full w-64 bg-background text-text p-4 pt-20 transform transition-transform duration-300 pointer-events-auto z-50 ${
+        className={`absolute top-0 left-0 h-full w-64 bg-background-light text-text p-4 pt-20 transform transition-transform duration-300 pointer-events-auto z-50 ${
           animateIn ? "translate-x-0" : "-translate-x-full"
         }`}
       >

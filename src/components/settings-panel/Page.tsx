@@ -97,7 +97,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
             <div className="flex justify-end w-full">
               <button
                 onClick={handleApply}
-                className="px-6 py-2 border-2 border-border rounded-2xl text-text bg-transparent hover:bg-background-dark hover:text-text-muted transition cursor-pointer"
+                className="px-6 py-2 border-2 border-border rounded-2xl text-text bg-transparent hover:bg-primary hover:text-white transition cursor-pointer"
               >
                 Apply Settings
               </button>
