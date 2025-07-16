@@ -15,8 +15,8 @@ export default function Pomodoro() {
     setSecondsLeft(duration);
   }
 
-  const minutes = Math.floor(secondsLeft / 60);
-  const seconds = secondsLeft % 60;
+  // const minutes = Math.floor(secondsLeft / 60);
+  // const seconds = secondsLeft % 60;
 
   // Start/stop interval when isRunning changes
   useEffect(() => {
@@ -90,7 +90,4 @@ export default function Pomodoro() {
       </div>
     </div>
   );
-}
-function setTimeLeft(duration: any) {
-  throw new Error("Function not implemented.");
 }
