@@ -37,7 +37,7 @@ export default function Page() {
       <button
         onClick={toggleDark}
         aria-label="Toggle dark mode"
-        className="justify-end p-2 text-text transition-colors duration-300 cursor-pointer hover:scale-110"
+        className="justify-end p-2 text-text transition-colors duration-300 cursor-pointer hover:scale-110 "
       >
         {isDark ? <Sun /> : <MoonStar />}
       </button>

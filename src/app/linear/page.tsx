@@ -121,7 +121,7 @@ export default function Linear() {
               y1="20"
               x2="0"
               y2="20"
-              stroke="var(--accent)"
+              stroke="var(--primary)"
               strokeWidth="20"
               strokeLinecap="round"
             />

@@ -105,7 +105,7 @@ export default function RadialTimer() {
   }, [isRunning, timeLeft]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-text">
       {/* Timer Display */}
       <FullScreen className="bg-transparent">
         <div
@@ -132,7 +132,7 @@ export default function RadialTimer() {
               cy={size / 2}
               r={RADIUS}
               fill="none"
-              stroke="var(--accent)"
+              stroke="var(--primary)"
               strokeWidth="20"
               strokeLinecap="round"
               strokeDasharray={FULL_DASH_ARRAY}
@@ -141,7 +141,7 @@ export default function RadialTimer() {
             />
           </svg>
           <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-text"
             style={{ fontSize: `${size / 10}px` }}
           >
             {minutes}:{seconds.toString().padStart(2, "0")}
@@ -155,8 +155,8 @@ export default function RadialTimer() {
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
             isRunning
-              ? "border-2 rounded-2xl border-accent text-text bg-transparent hover:bg-accent hover:text-white hover:cursor-pointer"
-              : "border-2 rounded-2xl border-accent text-text bg-transparent hover:bg-accent hover:text-white hover:cursor-pointer"
+              ? "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
+              : "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
           } text-black rounded`}
           disabled={timeLeft === 0}
         >
@@ -166,7 +166,7 @@ export default function RadialTimer() {
         {/* Reset Icon Button */}
         <button
           onClick={handleReset}
-          className="p-2 hover:cursor-pointer text-[var(--accent-color)] rounded-full transition-transform duration-200 hover:scale-110"
+          className="p-2 hover:cursor-pointer text-text rounded-full transition-transform duration-200 hover:scale-110"
           title="Reset Timer"
         >
           <RotateCcw className="w-6 h-6" />

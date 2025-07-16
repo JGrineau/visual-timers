@@ -25,7 +25,7 @@ export default function ClientLayout({
         className="fixed top-4 left-4 z-10 lg:hidden p-2"
         aria-label="Open menu"
       >
-        <Menu size={28} className="text-[var(--text-color)]" />
+        <Menu size={28} className="text-text" />
       </button>
 
       <MobileMenu open={menuOpen} setOpen={setMenuOpen} />
@@ -33,7 +33,7 @@ export default function ClientLayout({
       {/* Sidebar */}
       <div className="hidden lg:block">
         <div
-          className={`fixed top-0 left-0 h-screen transition-all duration-300 z-20 border-primary border-solid ${
+          className={`fixed top-0 left-0 h-screen transition-all duration-300 z-20 border-primary ${
             isCollapsed ? "w-16" : "w-64"
           }`}
         >
