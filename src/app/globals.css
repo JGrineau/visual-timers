@@ -1,33 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary); /* Deep blue/teal (logo primary) */
-  --color-accent: var(--accent); /* Bright teal (highlight/accent) */
-  --color-gradient: var(--gradient);
+  --color-background-dark: var(--bg-dark);
+  --color-background-light: var(--bg-light);
+  --color-background: var(--bg);
   --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-highlight: var(--highlight);
+  --color-border: var(--border);
+  --color-border-muted: var(--border-muted);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-info: var(--info);
 }
 
 /* ========== Root Theme Variables ========== */
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #1f1f1f;
 
-  --primary: #0b5470; /* Deep blue/teal (logo primary) */
-  --accent: #00acc1; /* Bright teal (highlight/accent) */
+  --primary: #0b5470;
+  --accent: #00acc1; 
   --gradient: linear-gradient(to bottom, #f5fafa, #0b5470);
   --text: #0b5470;
 
   --font-family: "Segoe UI", Arial, sans-serif;
 
-  /* Optional custom font vars for Tailwind extension */
+ 
   --font-sans: var(--font-family);
   --font-mono: monospace;
-}
+} */
 
 /* ========== Dark Mode Variables ========== */
-html.dark {
+/* html.dark {
   --background: #1f1e1e;
   --foreground: #ededed;
 
@@ -35,12 +43,49 @@ html.dark {
   --accent: #00acc1;
   --gradient: linear-gradient(to bottom, #131313, #0b5470);
   --text: #ededed;
-}
+} */
 
 /* ========== Global Body Styles ========== */
-body {
+/* This CSS code block is styling the global body element of a webpage. Here's what each line is doing: */
+/* body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-family);
   transition: background-color 0.3s, color 0.3s;
+} */
+
+:root {
+  /* oklch */
+  --bg-dark: oklch(0.92 0.025 264);
+  --bg: oklch(0.96 0.025 264);
+  --bg-light: oklch(1 0.025 264);
+  --text: oklch(0.15 0.05 264);
+  --text-muted: oklch(0.4 0.05 264);
+  --highlight: oklch(1 0.05 264);
+  --border: oklch(0.6 0.05 264);
+  --border-muted: oklch(0.7 0.05 264);
+  --primary: oklch(0.4 0.1 264);
+  --secondary: oklch(0.4 0.1 84);
+  --danger: oklch(0.5 0.05 30);
+  --warning: oklch(0.5 0.05 100);
+  --success: oklch(0.5 0.05 160);
+  --info: oklch(0.5 0.05 260);
+}
+
+/* oklch */
+html.dark {
+  --bg-dark: oklch(0.1 0.025 264);
+  --bg: oklch(0.15 0.025 264);
+  --bg-light: oklch(0.2 0.025 264);
+  --text: oklch(0.96 0.05 264);
+  --text-muted: oklch(0.76 0.05 264);
+  --highlight: oklch(0.5 0.05 264);
+  --border: oklch(0.4 0.05 264);
+  --border-muted: oklch(0.3 0.05 264);
+  --primary: oklch(0.76 0.1 264);
+  --secondary: oklch(0.76 0.1 84);
+  --danger: oklch(0.7 0.05 30);
+  --warning: oklch(0.7 0.05 100);
+  --success: oklch(0.7 0.05 160);
+  --info: oklch(0.7 0.05 260);
 }

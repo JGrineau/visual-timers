@@ -59,14 +59,14 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
         >
           {/* Modal Content */}
           <div
-            className="bg-white rounded-2xl p-4 max-w-md w-[90vw] relative flex flex-col"
+            className="bg-background-light rounded-2xl p-4 max-w-md w-[90vw] relative flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <div className="w-full flex justify-end">
               <button
                 onClick={closePanel}
-                className="p-1 rounded hover:bg-gray-200 hover:cursor-pointer transition"
+                className="p-1 rounded hover:scale-110 hover:cursor-pointer transition"
                 aria-label="Close Settings"
               >
                 <X className="w-6 h-6" />
@@ -75,13 +75,13 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
 
             <h2
               id="settings-title"
-              className="text-lg font-semibold mb-4 text-gray-800"
+              className="text-lg font-semibold mb-4 text-text"
             >
               Settings
             </h2>
 
             {/* Size Selection */}
-            <div className="mb-4 hidden xl:block">
+            <div className="mb-4 hidden xl:block ">
               <SizeSelection size={tempSize} onChange={setTempSize} />
             </div>
 
@@ -97,7 +97,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
             <div className="flex justify-end w-full">
               <button
                 onClick={handleApply}
-                className="px-6 py-2 border-2 border-accent rounded-2xl text-text bg-transparent hover:bg-accent hover:text-text transition cursor-pointer"
+                className="px-6 py-2 border-2 border-border rounded-2xl text-text bg-transparent hover:bg-background-dark hover:text-text-muted transition cursor-pointer"
               >
                 Apply Settings
               </button>
