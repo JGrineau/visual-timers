@@ -30,7 +30,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
       >
         {/* Collapse Button */}
         <button
-          className={`mb-6 text-text hover:text-primary flex ${navItemAlignment} space-x-2 cursor-pointer p-2`}
+          className={`mb-6 text-text hover:scale-110 flex ${navItemAlignment} space-x-2 cursor-pointer p-2`}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
