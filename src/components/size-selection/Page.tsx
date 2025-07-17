@@ -14,7 +14,7 @@ export default function Page({ size, onChange }: SizeSelectorProps) {
       <select
         value={size}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full px-4 py-2 rounded-md bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
+        className="w-full px-4 py-2 rounded-md bg-background border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
       >
         <option value={400}>Small</option>
         <option value={500}>Medium</option>

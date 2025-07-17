@@ -149,14 +149,14 @@ export default function RadialTimer() {
         </div>
       </FullScreen>
 
-      {/* Control Buttons */}
+      {/* Start Button */}
       <div className="flex gap-4 mt-8 items-center justify-center w-full max-w-[600px]">
         <button
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
             isRunning
-              ? "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
-              : "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
+              ? "border-3 rounded-2xl border-border text-text bg-transparent hover:bg-primary hover:text-white hover:cursor-pointer"
+              : "border-3 rounded-2xl border-border text-text bg-transparent hover:bg-primary hover:text-white hover:cursor-pointer"
           } text-black rounded`}
           disabled={timeLeft === 0}
         >

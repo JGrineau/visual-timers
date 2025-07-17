@@ -30,7 +30,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
       >
         {/* Collapse Button */}
         <button
-          className={`mb-6 text-text hover:text-primary flex ${navItemAlignment} space-x-2 cursor-pointer`}
+          className={`mb-6 text-text hover:scale-110 flex ${navItemAlignment} space-x-2 cursor-pointer p-2`}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
@@ -49,7 +49,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
         <nav className="flex flex-col gap-4">
           <Link
             href="/"
-            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-background-dark p-2 rounded transition`}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
           >
             <HomeIcon size={20} />
             {!isCollapsed && <span>Home</span>}
@@ -58,7 +58,7 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           <div className="relative">
             <Link
               href="/pomodoro"
-              className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-background-dark p-2 rounded transition`}
+              className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
             >
               <Timer size={20} />
               {!isCollapsed && <span>Pomodoro</span>}
@@ -67,21 +67,21 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
 
           <Link
             href="/linear"
-            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-background-dark p-2 rounded transition`}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
           >
             <LineChart size={20} />
             {!isCollapsed && <span>Linear</span>}
           </Link>
           <Link
             href="/radial"
-            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-background-dark p-2 rounded transition`}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
           >
             <Circle size={20} />
             {!isCollapsed && <span>Radial</span>}
           </Link>
           <Link
             href="/custom"
-            className={`flex flex-col ${navItemAlignment} hover:bg-background-dark p-2 rounded transition`}
+            className={`flex flex-col ${navItemAlignment} hover:hover:bg-primary hover:text-white p-2 rounded transition`}
           >
             <div className={`flex items-center ${navItemAlignment} space-x-2`}>
               <Clock size={20} />
