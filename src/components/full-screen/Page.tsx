@@ -40,7 +40,9 @@ export default function FullscreenTimer({
       <div
         ref={timerRef}
         className={`relative flex justify-center items-center ${
-          isFullscreen ? "w-screen h-screen bg-background" : ""
+          isFullscreen
+            ? "w-screen h-screen bg-[var(--background)] text-[var(--text)]"
+            : ""
         } ${className ?? ""}`}
       >
         {children}

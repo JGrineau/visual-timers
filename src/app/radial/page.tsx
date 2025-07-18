@@ -7,11 +7,11 @@ import { RotateCcw } from "lucide-react";
 import "../../app/globals.css";
 
 export default function RadialTimer() {
-  const [size, setSize] = useState(400); // Default size
+  const [size, setSize] = useState(400);
 
   const RADIUS = size / 2 - 20;
 
-  const [duration, setDuration] = useState(600); // default to 10 minutes
+  const [duration, setDuration] = useState(600);
 
   const FULL_DASH_ARRAY = 2 * Math.PI * RADIUS;
 
@@ -87,7 +87,7 @@ export default function RadialTimer() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
-        e.preventDefault(); // Prevent scrolling
+        e.preventDefault();
         if (isRunning) {
           handleStop();
         } else if (timeLeft > 0) {
@@ -107,6 +107,7 @@ export default function RadialTimer() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-text">
       {/* Timer Display */}
+      {/* SVGCircleElement */}
       <FullScreen className="bg-transparent">
         <div
           style={{
@@ -171,6 +172,7 @@ export default function RadialTimer() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
+        {/* Settings Panel */}
         <SettingsPanel
           size={size}
           duration={duration}

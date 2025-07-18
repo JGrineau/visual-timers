@@ -9,16 +9,20 @@ export default function Pomodoro() {
   const [secondsLeft, setSecondsLeft] = useState(DEFAULT_TIME);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [activeMode, setActiveMode] = useState<Mode>("pomodoro");
+
+  const POMODORO_TIME = 25 * 60;
+  const SHORT_BREAK_TIME = 5 * 60;
+  const LONG_BREAK_TIME = 10 * 60;
+
+  type Mode = "pomodoro" | "short" | "long";
 
   // Helper to set the timer to a specific duration (in seconds)
   function setTimeLeft(duration: number) {
     setSecondsLeft(duration);
   }
 
-  // const minutes = Math.floor(secondsLeft / 60);
-  // const seconds = secondsLeft % 60;
-
-  // Start/stop interval when isRunning changes
+  //  Start/stop interval when isRunning changes
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
@@ -63,16 +67,64 @@ export default function Pomodoro() {
     setTimeLeft(DEFAULT_TIME);
   };
 
+  // Handlers for break buttons
+  const handlePomodoro = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current!);
+    setTimeLeft(POMODORO_TIME);
+    setActiveMode("pomodoro");
+  };
+
+  const handleShortBreak = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current!);
+    setTimeLeft(SHORT_BREAK_TIME);
+    setActiveMode("short");
+  };
+
+  const handleLongBreak = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current!);
+    setTimeLeft(LONG_BREAK_TIME);
+    setActiveMode("long");
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-text">
-      <div className="text-6xl font-mono mb-8">{formatTime(secondsLeft)}</div>
+      {/* Break Buttons */}
+      <div className="flex flex-row gap-4 mb-8">
+        <button
+          className="px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
+          data-active={activeMode === "pomodoro"}
+          onClick={handlePomodoro}
+        >
+          Pomodoro
+        </button>
+        <button
+          className="px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
+          data-active={activeMode === "short"}
+          onClick={handleShortBreak}
+        >
+          Short Break
+        </button>
+        <button
+          className="px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
+          data-active={activeMode === "long"}
+          onClick={handleLongBreak}
+        >
+          Long Break
+        </button>
+      </div>
+      {/* Timer Display */}
+      <div className="text-9xl font-mono mb-8">{formatTime(secondsLeft)}</div>
+      {/* Start/Pause Button */}
       <div className="flex gap-4">
         <button
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
             isRunning
-              ? "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
-              : "border-2 rounded-2xl border-border text-text bg-transparent hover:bg-background-dark hover:text-text-muted hover:cursor-pointer"
+              ? "px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:bg-accent hover:text-white hover:bg-primary hover:cursor-pointer transition"
+              : "px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:bg-accent hover:text-white hover:bg-primary hover:cursor-pointer transition"
           } text-black rounded`}
           disabled={secondsLeft === 0}
         >

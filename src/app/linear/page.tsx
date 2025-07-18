@@ -98,11 +98,12 @@ export default function Linear() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       {/* Timer Area */}
+      {/* SVG Element */}
       <Full className="bg-transparent">
         <div className="w-full max-w-[90vw] sm:max-w-[600px]">
           <svg
             width="100%"
-            height="40"
+            height="60"
             viewBox={`0 0 ${size} 40`}
             preserveAspectRatio="none"
           >
@@ -134,6 +135,7 @@ export default function Linear() {
 
       {/* Control Buttons */}
 
+      {/* Start/Pause */}
       <div className="flex gap-4 mt-8 items-center justify-center w-full max-w-[600px]">
         <button
           onClick={isRunning ? handleStop : handleStart}
@@ -142,6 +144,7 @@ export default function Linear() {
         >
           {isRunning ? "Pause" : "Start"}
         </button>
+        {/* Reset Button */}
         <button
           onClick={handleReset}
           className="p-2 text-text rounded-full hover:scale-110 transition-transform duration-200 hover:cursor-pointer"
@@ -149,6 +152,7 @@ export default function Linear() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
+        {/* Settings Button */}
         <SettingsPanel
           size={size}
           duration={duration}
