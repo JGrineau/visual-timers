@@ -40,7 +40,9 @@ export default function FullscreenTimer({
       <div
         ref={timerRef}
         className={`relative flex justify-center items-center ${
-          isFullscreen ? "w-screen h-screen bg-background" : ""
+          isFullscreen
+            ? "w-screen h-screen bg-[var(--background)] text-[var(--text)]"
+            : ""
         } ${className ?? ""}`}
       >
         {children}
@@ -49,7 +51,7 @@ export default function FullscreenTimer({
       {!isFullscreen && (
         <button
           onClick={toggleFullscreen}
-          className="absolute bottom-10 right-10 p-4 bg-background text-text rounded-full shadow-xl/30 hover:bg-gray-100 hover:scale-110 hover:cursor-pointer hidden md:flex"
+          className="absolute bottom-10 right-10 p-4 bg-background text-text rounded-full shadow-xl/30 hover:bg-primary hover:scale-110 hover:cursor-pointer hover:text-white hidden md:flex"
           aria-label="Enter Fullscreen"
         >
           <Maximize size={24} />
