@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "../../app/globals.css";
 import {
   Menu,
@@ -20,6 +21,7 @@ type Props = {
 };
 
 export default function Page({ isCollapsed, setIsCollapsed }: Props) {
+  const pathname = usePathname();
   const navItemAlignment = isCollapsed ? "justify-center" : "justify-start";
 
   return (
@@ -49,7 +51,8 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
         <nav className="flex flex-col gap-4">
           <Link
             href="/"
-            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
+            data-active={pathname === "/"}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition  data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
             <HomeIcon size={20} />
             {!isCollapsed && <span>Home</span>}
@@ -58,7 +61,8 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           <div className="relative">
             <Link
               href="/pomodoro"
-              className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
+              data-active={pathname === "/pomodoro"}
+              className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
             >
               <Timer size={20} />
               {!isCollapsed && <span>Pomodoro</span>}
@@ -67,21 +71,24 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
 
           <Link
             href="/linear"
-            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
+            data-active={pathname === "/linear"}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
             <LineChart size={20} />
             {!isCollapsed && <span>Linear</span>}
           </Link>
           <Link
             href="/radial"
-            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition`}
+            data-active={pathname === "/radial"}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
             <Circle size={20} />
             {!isCollapsed && <span>Radial</span>}
           </Link>
           <Link
             href="/custom"
-            className={`flex flex-col ${navItemAlignment} hover:hover:bg-primary hover:text-white p-2 rounded transition`}
+            data-active={pathname === "/custom"}
+            className={`flex flex-col ${navItemAlignment} hover:hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
             <div className={`flex items-center ${navItemAlignment} space-x-2`}>
               <Clock size={20} />
