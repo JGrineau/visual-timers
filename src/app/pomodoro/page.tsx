@@ -92,33 +92,36 @@ export default function Pomodoro() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-text">
       {/* Break Buttons */}
-      <div className="flex flex-row gap-4 mb-8">
+      <div className="flex gap-2 md:gap-4 m-3 justify-center flex-wrap">
         <button
-          className="px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
+          className="text-md px-3 py-1.5 md:px-6 md:py-2 border-3 border-border rounded-xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
           data-active={activeMode === "pomodoro"}
           onClick={handlePomodoro}
         >
           Pomodoro
         </button>
         <button
-          className="px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
+          className="text-md px-3 py-1.5 md:px-6 md:py-2 border-3 border-border rounded-xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
           data-active={activeMode === "short"}
           onClick={handleShortBreak}
         >
           Short Break
         </button>
         <button
-          className="px-6 py-2 border-3 border-border rounded-2xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
+          className="text-md px-3 py-1.5 md:px-6 md:py-2 border-3 border-border rounded-xl text-text bg-transparent hover:text-white hover:bg-primary hover:cursor-pointer transition data-[active=true]:bg-primary data-[active=true]:text-white"
           data-active={activeMode === "long"}
           onClick={handleLongBreak}
         >
           Long Break
         </button>
       </div>
+
       {/* Timer Display */}
-      <div className="text-9xl font-mono mb-8">{formatTime(secondsLeft)}</div>
+      <div className="flex justify-center font-mono m-6 text-7xl xs:text-8xl sm:text-9xl md:text-9xl lg:text-9x">
+        {formatTime(secondsLeft)}
+      </div>
       {/* Start/Pause Button */}
-      <div className="flex gap-4">
+      <div className="flex m-6 justify-center gap-4">
         <button
           onClick={isRunning ? handleStop : handleStart}
           className={`px-6 py-2 ${
