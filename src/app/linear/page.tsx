@@ -14,6 +14,14 @@ export default function Linear() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [size, setSize] = useState(600); // Default, gets updated dynamically
 
+  const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("selectedSound");
+    if (saved) setSelectedSound(saved);
+  }, []);
+
   // Update `size` based on window width
   useEffect(() => {
     const updateSize = () => {
@@ -39,6 +47,12 @@ export default function Linear() {
           if (prev <= 1) {
             clearInterval(intervalRef.current!);
             setIsRunning(false);
+            if (audioRef.current) {
+              audioRef.current.currentTime = 0;
+              audioRef.current.play().catch((e) => {
+                console.warn("Audio play was blocked by browser:", e);
+              });
+            }
             return 0;
           }
           return prev - 1;
@@ -156,15 +170,17 @@ export default function Linear() {
         <SettingsPanel
           size={size}
           duration={duration}
-          onApply={(newSize, newDuration) => {
+          onApply={(newSize, newDuration, newSound) => {
             setSize(newSize);
             setDuration(newDuration);
-            setTimeLeft(newDuration); // reset timer with new duration
+            setSelectedSound(newSound); // <-- update chosen sound
+            setTimeLeft(newDuration);
             if (progressRef.current) {
-              progressRef.current.setAttribute("x2", "0"); // reset progress line
+              progressRef.current.setAttribute("x2", "0");
             }
           }}
         />
+        <audio ref={audioRef} src={selectedSound} preload="auto" />
       </div>
     </div>
   );

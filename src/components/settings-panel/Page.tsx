@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Settings, X } from "lucide-react";
 import SizeSelection from "@/components/size-selection/Page";
 import DurationSelector from "@/components/duration-selection/Page";
-import Alarm from "@/components/alarm/Page";
+// import Alarm from "@/components/alarm/Page";
 import "../../app/globals.css";
 
 interface SettingsPanelProps {
@@ -29,7 +29,8 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
     if (isOpen) {
       setTempSize(size);
       setTempDuration(duration);
-      setTempSound("/Alarm.mp3");
+      const saved = localStorage.getItem("selectedSound");
+      setTempSound(saved || "/Alarm.mp3");
     }
   }, [isOpen, size, duration]);
 
@@ -100,12 +101,29 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
               />
             </div>
             {/* Alarm sound option */}
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <Alarm
                 play={false}
                 selectedSound={tempSound} // Provide the appropriate selected sound value
                 onSoundChange={setTempSound} // Provide the appropriate handler function
               />
+            </div> */}
+            <div className="mb-4">
+              <label htmlFor="sound" className="block text-sm mb-1">
+                Select Alarm Sound:
+              </label>
+              <select
+                id="sound"
+                value={tempSound}
+                onChange={(e) => setTempSound(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded"
+              >
+                <option value="/Alarm.mp3">Classic Alarm</option>
+                <option value="/AlarmBeep.mp3">Beep</option>
+                <option value="/AlarmChime.mp3">Chime</option>
+                <option value="/AlarmDigital.mp3">Digital</option>
+                <option value="/AlarmBuzz.mp3">Buzz</option>
+              </select>
             </div>
 
             {/* Apply Button */}

@@ -8,6 +8,7 @@ import "../../app/globals.css";
 
 export default function RadialTimer() {
   const [size, setSize] = useState(400);
+  const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
 
   const RADIUS = size / 2 - 20;
 
@@ -42,6 +43,12 @@ export default function RadialTimer() {
   useEffect(() => {
     setTimeLeft(duration);
   }, [duration]);
+
+  // Load sound from localStorage on first load
+  useEffect(() => {
+    const savedSound = localStorage.getItem("selectedSound");
+    if (savedSound) setSelectedSound(savedSound);
+  }, []);
 
   useEffect(() => {
     if (isRunning) {
@@ -185,9 +192,10 @@ export default function RadialTimer() {
         <SettingsPanel
           size={size}
           duration={duration}
-          onApply={(newSize, newDuration) => {
+          onApply={(newSize, newDuration, newSound) => {
             setSize(newSize);
             setDuration(newDuration);
+            setSelectedSound(newSound);
             setTimeLeft(newDuration); // reset timer with new duration
 
             if (progressRef.current) {
@@ -197,7 +205,7 @@ export default function RadialTimer() {
         />
       </div>
       {/* Audio Element */}
-      <audio ref={audioRef} src="/Alarm.mp3" preload="auto" />
+      {/* <audio ref={audioRef} src="/Alarm.mp3" preload="auto" /> */}
     </div>
   );
 }
