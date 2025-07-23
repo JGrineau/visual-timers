@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import { Settings, X } from "lucide-react";
 import SizeSelection from "@/components/size-selection/Page";
 import DurationSelector from "@/components/duration-selection/Page";
+import Alarm from "@/components/alarm/Page";
 import "../../app/globals.css";
 
 interface SettingsPanelProps {
   size: number;
   duration: number;
-  onApply: (size: number, duration: number) => void;
+  onApply: (size: number, duration: number, sound: string) => void;
 }
 
 const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
@@ -18,6 +19,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
   // Local temporary states
   const [tempSize, setTempSize] = useState(size);
   const [tempDuration, setTempDuration] = useState(duration);
+  const [tempSound, setTempSound] = useState("/Alarm.mp3");
 
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
@@ -27,16 +29,21 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
     if (isOpen) {
       setTempSize(size);
       setTempDuration(duration);
+      setTempSound("/Alarm.mp3");
     }
   }, [isOpen, size, duration]);
 
+  // const handleApply = () => {
+  //   onApply(tempSize, tempDuration, tempSound);
+  //   closePanel();
+  // };
   const handleApply = () => {
-    onApply(tempSize, tempDuration);
+    localStorage.setItem("selectedSound", tempSound); // Save to localStorage
+    onApply(tempSize, tempDuration, tempSound);
     closePanel();
   };
-
   return (
-    <>
+    <div>
       {/* Settings Icon Button */}
       <button
         onClick={togglePanel}
@@ -92,6 +99,14 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
                 onChange={setTempDuration}
               />
             </div>
+            {/* Alarm sound option */}
+            <div className="mb-4">
+              <Alarm
+                play={false}
+                selectedSound={tempSound} // Provide the appropriate selected sound value
+                onSoundChange={setTempSound} // Provide the appropriate handler function
+              />
+            </div>
 
             {/* Apply Button */}
             <div className="flex justify-end w-full">
@@ -105,7 +120,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default Page;

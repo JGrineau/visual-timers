@@ -19,6 +19,9 @@ export default function RadialTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<SVGCircleElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  <audio ref={audioRef} src="/Alarm.mp3" preload="auto" />;
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,6 +50,12 @@ export default function RadialTimer() {
           if (prev <= 1) {
             clearInterval(intervalRef.current!);
             setIsRunning(false);
+
+            if (audioRef.current) {
+              audioRef.current.currentTime = 0;
+              audioRef.current.play();
+            }
+
             return 0;
           }
           return prev - 1;
@@ -180,12 +189,15 @@ export default function RadialTimer() {
             setSize(newSize);
             setDuration(newDuration);
             setTimeLeft(newDuration); // reset timer with new duration
+
             if (progressRef.current) {
               progressRef.current.setAttribute("x2", "0"); // reset progress line
             }
           }}
         />
       </div>
+      {/* Audio Element */}
+      <audio ref={audioRef} src="/Alarm.mp3" preload="auto" />
     </div>
   );
 }
