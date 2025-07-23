@@ -12,34 +12,31 @@ export default function Linear() {
   const [timeLeft, setTimeLeft] = useState(duration);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [size, setSize] = useState(600); // Default, gets updated dynamically
-
+  const [size, setSize] = useState(600);
   const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [isComplete, setIsComplete] = useState(false); // 🔍 New state
 
   useEffect(() => {
     const saved = localStorage.getItem("selectedSound");
     if (saved) setSelectedSound(saved);
   }, []);
 
-  // Update `size` based on window width
   useEffect(() => {
     const updateSize = () => {
-      const width = Math.min(window.innerWidth * 0.9, 600); // 90% of screen width or max 600
+      const width = Math.min(window.innerWidth * 0.9, 600);
       setSize(width);
     };
-
-    updateSize(); // Initial call
+    updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // Sync timeLeft when duration changes
   useEffect(() => {
     setTimeLeft(duration);
   }, [duration]);
 
-  // Timer logic
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
@@ -47,6 +44,7 @@ export default function Linear() {
           if (prev <= 1) {
             clearInterval(intervalRef.current!);
             setIsRunning(false);
+            setIsComplete(true); // 🔍 Show popup
             if (audioRef.current) {
               audioRef.current.currentTime = 0;
               audioRef.current.play().catch((e) => {
@@ -59,11 +57,9 @@ export default function Linear() {
         });
       }, 1000);
     }
-
     return () => clearInterval(intervalRef.current!);
   }, [isRunning]);
 
-  // Update progress line
   useEffect(() => {
     if (progressRef.current) {
       const progress = (timeLeft / duration) * size;
@@ -71,14 +67,16 @@ export default function Linear() {
     }
   }, [timeLeft, duration, size]);
 
-  // Format time display
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
   const formatTime = (min: number, sec: number) =>
     `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 
   const handleStart = () => {
-    if (!isRunning && timeLeft > 0) setIsRunning(true);
+    if (!isRunning && timeLeft > 0) {
+      setIsComplete(false); // 🔍 Reset popup on new start
+      setIsRunning(true);
+    }
   };
 
   const handleStop = () => setIsRunning(false);
@@ -86,33 +84,35 @@ export default function Linear() {
   const handleReset = () => {
     setIsRunning(false);
     setTimeLeft(duration);
+    setIsComplete(false); // 🔍 Hide popup if resetting
     if (progressRef.current) {
       progressRef.current.setAttribute("x2", "0");
     }
   };
 
-  // Keyboard controls
+  const handleStopAlarm = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsComplete(false); // 🔍 Hide popup
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        if (isRunning) {
-          handleStop();
-        } else if (timeLeft > 0) {
-          handleStart();
-        }
+        isRunning ? handleStop() : timeLeft > 0 && handleStart();
       }
       if (e.key.toLowerCase() === "r") handleReset();
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isRunning, timeLeft]);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      {/* Timer Area */}
-      {/* SVG Element */}
+      {/* Timer */}
       <Full className="bg-transparent">
         <div className="w-full max-w-[90vw] sm:max-w-[600px]">
           <svg
@@ -147,9 +147,7 @@ export default function Linear() {
         </div>
       </Full>
 
-      {/* Control Buttons */}
-
-      {/* Start/Pause */}
+      {/* Controls */}
       <div className="flex gap-4 mt-8 items-center justify-center w-full max-w-[600px]">
         <button
           onClick={isRunning ? handleStop : handleStart}
@@ -158,7 +156,7 @@ export default function Linear() {
         >
           {isRunning ? "Pause" : "Start"}
         </button>
-        {/* Reset Button */}
+
         <button
           onClick={handleReset}
           className="p-2 text-text rounded-full hover:scale-110 transition-transform duration-200 hover:cursor-pointer"
@@ -166,7 +164,7 @@ export default function Linear() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
-        {/* Settings Button */}
+
         <SettingsPanel
           size={size}
           duration={duration}
@@ -175,13 +173,35 @@ export default function Linear() {
             setDuration(newDuration);
             setSelectedSound(newSound);
             setTimeLeft(newDuration);
+            setIsComplete(false); // 🔍 Clear popup if changing settings
             if (progressRef.current) {
               progressRef.current.setAttribute("x2", "0");
             }
           }}
         />
-        <audio ref={audioRef} src={selectedSound} preload="auto" />
+
+        <audio ref={audioRef} src={selectedSound} preload="auto" loop />
       </div>
+
+      {/* 🔍 Timer Complete Popup */}
+      {isComplete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-center">
+            <h2 className="text-2xl font-bold mb-3 text-text">
+              ✅ Timer Complete!
+            </h2>
+            <p className="text-sm mb-6 text-text">
+              Your countdown has finished.
+            </p>
+            <button
+              onClick={handleStopAlarm}
+              className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-accent transition"
+            >
+              Stop Alarm
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

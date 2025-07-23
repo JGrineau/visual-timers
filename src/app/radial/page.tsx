@@ -8,7 +8,6 @@ import "../../app/globals.css";
 
 export default function RadialTimer() {
   const [size, setSize] = useState(400);
-  const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
 
   const RADIUS = size / 2 - 20;
 
@@ -20,9 +19,14 @@ export default function RadialTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<SVGCircleElement | null>(null);
+
+  const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  <audio ref={audioRef} src="/Alarm.mp3" preload="auto" />;
+  useEffect(() => {
+    const saved = localStorage.getItem("selectedSound");
+    if (saved) setSelectedSound(saved);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,7 +64,9 @@ export default function RadialTimer() {
 
             if (audioRef.current) {
               audioRef.current.currentTime = 0;
-              audioRef.current.play();
+              audioRef.current.play().catch((e) => {
+                console.warn("Audio play was blocked by browser:", e);
+              });
             }
 
             return 0;
@@ -196,16 +202,14 @@ export default function RadialTimer() {
             setSize(newSize);
             setDuration(newDuration);
             setSelectedSound(newSound);
-            setTimeLeft(newDuration); // reset timer with new duration
-
+            setTimeLeft(newDuration);
             if (progressRef.current) {
-              progressRef.current.setAttribute("x2", "0"); // reset progress line
+              progressRef.current.setAttribute("x2", "0");
             }
           }}
         />
+        <audio ref={audioRef} src={selectedSound} preload="auto" />
       </div>
-      {/* Audio Element */}
-      {/* <audio ref={audioRef} src="/Alarm.mp3" preload="auto" /> */}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Settings, X } from "lucide-react";
 import SizeSelection from "@/components/size-selection/Page";
 import DurationSelector from "@/components/duration-selection/Page";
+import Alarm from "@/components/alarm/Page";
 // import Alarm from "@/components/alarm/Page";
 import "../../app/globals.css";
 
@@ -100,15 +101,8 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
                 onChange={setTempDuration}
               />
             </div>
-            {/* Alarm sound option */}
+            {/* Alarm option */}
             {/* <div className="mb-4">
-              <Alarm
-                play={false}
-                selectedSound={tempSound} // Provide the appropriate selected sound value
-                onSoundChange={setTempSound} // Provide the appropriate handler function
-              />
-            </div> */}
-            <div className="mb-4">
               <label htmlFor="sound" className="block text-sm mb-1">
                 Select Alarm Sound:
               </label>
@@ -124,7 +118,13 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
                 <option value="/AlarmDigital.mp3">Digital</option>
                 <option value="/AlarmBuzz.mp3">Buzz</option>
               </select>
-            </div>
+            </div> */}
+
+            {/* Alarm Component */}
+            <Alarm
+              value={tempSound}
+              onChange={(sound) => setTempSound(sound)}
+            />
 
             {/* Apply Button */}
             <div className="flex justify-end w-full">

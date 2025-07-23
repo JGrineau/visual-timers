@@ -1,63 +1,35 @@
-import { useEffect, useRef } from "react";
+"use client";
 
-type AlarmProps = {
-  play: boolean;
-  selectedSound: string;
-  onSoundChange: (sound: string) => void;
-};
+import React from "react";
+import "../../app/globals.css";
 
-const soundOptions = [
-  { label: "Bell", src: "/Alarm.mp3" },
-  { label: "Digital", src: "/AlarmDigital.mp3" },
-  { label: "Chime", src: "/AlarmChime.mp3" },
-  // Add more sounds as needed, make sure files exist in /public
-];
+interface AlarmProps {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-export default function Alarm({
-  play,
-  selectedSound,
-  onSoundChange,
-}: AlarmProps) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  // Play when "play" becomes true (for timer end)
-  useEffect(() => {
-    if (play && audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
-  }, [play, selectedSound]);
-
+const Page: React.FC<AlarmProps> = ({ value, onChange }) => {
   return (
-    <div className="space-y-4">
-      <label className="block text-sm font-semibold mb-1 text-text">
-        Select Alarm Sound
+    <div className="mb-4">
+      <label
+        htmlFor="sound"
+        className="block text-sm font-semibold mb-2 cursor-pointer text-text"
+      >
+        Select Alarm Sound:
       </label>
       <select
-        value={selectedSound}
-        onChange={(e) => onSoundChange(e.target.value)}
+        id="sound"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="w-full px-4 py-2 rounded-md bg-background border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
       >
-        {soundOptions.map((sound) => (
-          <option key={sound.src} value={sound.src}>
-            {sound.label}
-          </option>
-        ))}
+        <option value="/Alarm.mp3">Classic Alarm</option>
+        <option value="/AlarmBeep.mp3">Beep</option>
+        <option value="/AlarmChime.mp3">Chime</option>
+        <option value="/AlarmDigital.mp3">Digital</option>
+        <option value="/AlarmBuzz.mp3">Buzz</option>
       </select>
-
-      <button
-        className="mt-2 px-4 py-2 bg-primary text-white rounded"
-        onClick={() => {
-          if (audioRef.current) {
-            audioRef.current.currentTime = 0;
-            audioRef.current.play();
-          }
-        }}
-      >
-        Test Sound
-      </button>
-
-      <audio ref={audioRef} src={selectedSound} preload="auto" />
     </div>
   );
-}
+};
+export default Page;
