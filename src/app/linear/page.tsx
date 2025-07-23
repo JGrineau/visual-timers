@@ -173,7 +173,7 @@ export default function Linear() {
           onApply={(newSize, newDuration, newSound) => {
             setSize(newSize);
             setDuration(newDuration);
-            setSelectedSound(newSound); // <-- update chosen sound
+            setSelectedSound(newSound);
             setTimeLeft(newDuration);
             if (progressRef.current) {
               progressRef.current.setAttribute("x2", "0");
