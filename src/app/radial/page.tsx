@@ -22,6 +22,7 @@ export default function RadialTimer() {
 
   const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("selectedSound");
@@ -61,7 +62,7 @@ export default function RadialTimer() {
           if (prev <= 1) {
             clearInterval(intervalRef.current!);
             setIsRunning(false);
-
+            setIsComplete(true);
             if (audioRef.current) {
               audioRef.current.currentTime = 0;
               audioRef.current.play().catch((e) => {
@@ -97,6 +98,7 @@ export default function RadialTimer() {
 
   const handleStop = () => {
     setIsRunning(false);
+    setIsComplete(false);
     clearInterval(intervalRef.current!);
   };
 
@@ -104,6 +106,14 @@ export default function RadialTimer() {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
     setTimeLeft(duration);
+  };
+
+  const handleStopAlarm = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsComplete(false); // 🔍 Hide popup
   };
 
   useEffect(() => {
@@ -203,13 +213,33 @@ export default function RadialTimer() {
             setDuration(newDuration);
             setSelectedSound(newSound);
             setTimeLeft(newDuration);
+            setIsComplete(false);
             if (progressRef.current) {
               progressRef.current.setAttribute("x2", "0");
             }
           }}
         />
-        <audio ref={audioRef} src={selectedSound} preload="auto" />
+        <audio ref={audioRef} src={selectedSound} preload="auto" loop />
       </div>
+      {/* Timer Complete Popup */}
+      {isComplete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-cente">
+            <h2 className="text-2xl font-bold mb-3 text-text">
+              ✅ Timer Complete!
+            </h2>
+            <p className="text-sm mb-6 text-text">
+              Your countdown has finished.
+            </p>
+            <button
+              onClick={handleStopAlarm}
+              className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-accent transition hover:cursor-pointer"
+            >
+              Stop Alarm
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

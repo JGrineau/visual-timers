@@ -183,7 +183,7 @@ export default function Linear() {
         <audio ref={audioRef} src={selectedSound} preload="auto" loop />
       </div>
 
-      {/* 🔍 Timer Complete Popup */}
+      {/* Timer Complete Popup */}
       {isComplete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-center">

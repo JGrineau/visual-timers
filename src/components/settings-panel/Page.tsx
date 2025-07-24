@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Settings, X } from "lucide-react";
 import SizeSelection from "@/components/size-selection/Page";
 import DurationSelector from "@/components/duration-selection/Page";
 import Alarm from "@/components/alarm/Page";
-// import Alarm from "@/components/alarm/Page";
+import { stopSound } from "../alarm/utils/audioController";
 import "../../app/globals.css";
 
 interface SettingsPanelProps {
@@ -25,6 +25,8 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   // Reset temp states when opening
   React.useEffect(() => {
     if (isOpen) {
@@ -40,6 +42,7 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
   //   closePanel();
   // };
   const handleApply = () => {
+    stopSound();
     localStorage.setItem("selectedSound", tempSound); // Save to localStorage
     onApply(tempSize, tempDuration, tempSound);
     closePanel();
@@ -101,24 +104,6 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
                 onChange={setTempDuration}
               />
             </div>
-            {/* Alarm option */}
-            {/* <div className="mb-4">
-              <label htmlFor="sound" className="block text-sm mb-1">
-                Select Alarm Sound:
-              </label>
-              <select
-                id="sound"
-                value={tempSound}
-                onChange={(e) => setTempSound(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded"
-              >
-                <option value="/Alarm.mp3">Classic Alarm</option>
-                <option value="/AlarmBeep.mp3">Beep</option>
-                <option value="/AlarmChime.mp3">Chime</option>
-                <option value="/AlarmDigital.mp3">Digital</option>
-                <option value="/AlarmBuzz.mp3">Buzz</option>
-              </select>
-            </div> */}
 
             {/* Alarm Component */}
             <Alarm

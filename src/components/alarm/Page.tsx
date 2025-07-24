@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { useRef } from "react";
+import { playSound } from "./utils/audioController";
 import "../../app/globals.css";
 
 interface AlarmProps {
@@ -9,6 +11,12 @@ interface AlarmProps {
 }
 
 const Page: React.FC<AlarmProps> = ({ value, onChange }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = e.target.value;
+    playSound(newValue); // Preview the new sound
+    onChange(newValue); // Notify parent of selection
+  };
+
   return (
     <div className="mb-4">
       <label
@@ -20,7 +28,7 @@ const Page: React.FC<AlarmProps> = ({ value, onChange }) => {
       <select
         id="sound"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={handleChange}
         className="w-full px-4 py-2 rounded-md bg-background border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
       >
         <option value="/Alarm.mp3">Classic Alarm</option>
