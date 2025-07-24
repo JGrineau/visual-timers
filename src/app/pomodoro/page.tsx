@@ -142,6 +142,7 @@ export default function Pomodoro() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
+        {/* Settings Panel */}
       </div>
     </div>
   );

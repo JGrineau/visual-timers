@@ -20,6 +20,15 @@ export default function RadialTimer() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<SVGCircleElement | null>(null);
 
+  const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("selectedSound");
+    if (saved) setSelectedSound(saved);
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 449) {
@@ -40,6 +49,12 @@ export default function RadialTimer() {
     setTimeLeft(duration);
   }, [duration]);
 
+  // Load sound from localStorage on first load
+  useEffect(() => {
+    const savedSound = localStorage.getItem("selectedSound");
+    if (savedSound) setSelectedSound(savedSound);
+  }, []);
+
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
@@ -47,6 +62,14 @@ export default function RadialTimer() {
           if (prev <= 1) {
             clearInterval(intervalRef.current!);
             setIsRunning(false);
+            setIsComplete(true);
+            if (audioRef.current) {
+              audioRef.current.currentTime = 0;
+              audioRef.current.play().catch((e) => {
+                console.warn("Audio play was blocked by browser:", e);
+              });
+            }
+
             return 0;
           }
           return prev - 1;
@@ -75,6 +98,7 @@ export default function RadialTimer() {
 
   const handleStop = () => {
     setIsRunning(false);
+    setIsComplete(false);
     clearInterval(intervalRef.current!);
   };
 
@@ -82,6 +106,14 @@ export default function RadialTimer() {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
     setTimeLeft(duration);
+  };
+
+  const handleStopAlarm = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsComplete(false); // 🔍 Hide popup
   };
 
   useEffect(() => {
@@ -176,16 +208,38 @@ export default function RadialTimer() {
         <SettingsPanel
           size={size}
           duration={duration}
-          onApply={(newSize, newDuration) => {
+          onApply={(newSize, newDuration, newSound) => {
             setSize(newSize);
             setDuration(newDuration);
-            setTimeLeft(newDuration); // reset timer with new duration
+            setSelectedSound(newSound);
+            setTimeLeft(newDuration);
+            setIsComplete(false);
             if (progressRef.current) {
-              progressRef.current.setAttribute("x2", "0"); // reset progress line
+              progressRef.current.setAttribute("x2", "0");
             }
           }}
         />
+        <audio ref={audioRef} src={selectedSound} preload="auto" loop />
       </div>
+      {/* Timer Complete Popup */}
+      {isComplete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-cente">
+            <h2 className="text-2xl font-bold mb-3 text-text">
+              ✅ Timer Complete!
+            </h2>
+            <p className="text-sm mb-6 text-text">
+              Your countdown has finished.
+            </p>
+            <button
+              onClick={handleStopAlarm}
+              className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-accent transition hover:cursor-pointer"
+            >
+              Stop Alarm
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
