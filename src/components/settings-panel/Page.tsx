@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Settings, X } from "lucide-react";
 import SizeSelection from "@/components/size-selection/Page";
 import DurationSelector from "@/components/duration-selection/Page";
@@ -35,10 +35,6 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
     }
   }, [isOpen, size, duration]);
 
-  // const handleApply = () => {
-  //   onApply(tempSize, tempDuration, tempSound);
-  //   closePanel();
-  // };
   const handleApply = () => {
     stopSound();
     localStorage.setItem("selectedSound", tempSound); // Save to localStorage
