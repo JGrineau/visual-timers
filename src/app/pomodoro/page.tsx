@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 import { RotateCcw } from "lucide-react";
 import "../../app/globals.css";
-import SettingsPanel from "@/components/settings-panel/Page";
 
 const DEFAULT_TIME = 25 * 60; // 25 minutes in seconds
 

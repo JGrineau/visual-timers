@@ -31,9 +31,7 @@ const Page: React.FC<AlarmProps> = ({ value, onChange }) => {
         className="w-full px-4 py-2 rounded-md bg-background border border-border text-text focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
       >
         <option value="/Alarm.mp3">Classic Alarm</option>
-        <option value="/AlarmBeep.mp3">Beep</option>
-        <option value="/AlarmChime.mp3">Chime</option>
-        <option value="/AlarmDigital.mp3">Digital</option>
+
         <option value="/AlarmBuzz.mp3">Buzz</option>
       </select>
     </div>
