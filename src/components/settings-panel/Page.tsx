@@ -25,8 +25,6 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
   // Reset temp states when opening
   React.useEffect(() => {
     if (isOpen) {

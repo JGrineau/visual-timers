@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRef } from "react";
 import { playSound } from "./utils/audioController";
 import "../../app/globals.css";
 
