@@ -38,6 +38,13 @@ export default function Pomodoro() {
           if (prev <= 1) {
             clearInterval(intervalRef.current!);
             setIsRunning(false);
+            setIsComplete(true);
+            if (audioRef.current) {
+              audioRef.current.currentTime = 0;
+              audioRef.current.play().catch((e) => {
+                console.warn("Audio play was blocked by browser:", e);
+              });
+            }
             return 0;
           }
           return prev - 1;
@@ -188,14 +195,14 @@ export default function Pomodoro() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-center">
             <h2 className="text-2xl font-bold mb-3 text-text">
-              ✅ Timer Complete!
+              Timer Complete!
             </h2>
             <p className="text-sm mb-6 text-text">
               Your countdown has finished.
             </p>
             <button
               onClick={handleStopAlarm}
-              className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-accent transition"
+              className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-accent transition hover:cursor-pointer"
             >
               Stop Alarm
             </button>

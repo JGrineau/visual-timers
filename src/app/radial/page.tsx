@@ -227,7 +227,7 @@ export default function RadialTimer() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-cente">
             <h2 className="text-2xl font-bold mb-3 text-text">
-              ✅ Timer Complete!
+              Timer Complete!
             </h2>
             <p className="text-sm mb-6 text-text">
               Your countdown has finished.
