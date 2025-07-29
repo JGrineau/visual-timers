@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { RotateCcw } from "lucide-react";
 import "../../app/globals.css";
-
+import SettingsPanel from "@/components/settings-panel/Page";
 const DEFAULT_TIME = 25 * 60; // 25 minutes in seconds
 
 export default function Pomodoro() {
@@ -10,10 +10,14 @@ export default function Pomodoro() {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [activeMode, setActiveMode] = useState<Mode>("pomodoro");
+  const [selectedSound, setSelectedSound] = useState("/Alarm.mp3");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const POMODORO_TIME = 25 * 60;
-  const SHORT_BREAK_TIME = 5 * 60;
-  const LONG_BREAK_TIME = 10 * 60;
+  const [isComplete, setIsComplete] = useState(false);
+
+  const [pomodoroTime, setPomodoroTime] = useState(25 * 60);
+  const [shortBreakTime, setShortBreakTime] = useState(5 * 60);
+  const [longBreakTime, setLongBreakTime] = useState(10 * 60);
 
   type Mode = "pomodoro" | "short" | "long";
 
@@ -22,6 +26,10 @@ export default function Pomodoro() {
     setSecondsLeft(duration);
   }
 
+  useEffect(() => {
+    const saved = localStorage.getItem("selectedSound");
+    if (saved) setSelectedSound(saved);
+  }, []);
   //  Start/stop interval when isRunning changes
   useEffect(() => {
     if (isRunning) {
@@ -71,22 +79,30 @@ export default function Pomodoro() {
   const handlePomodoro = () => {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
-    setTimeLeft(POMODORO_TIME);
+    setTimeLeft(pomodoroTime);
     setActiveMode("pomodoro");
   };
 
   const handleShortBreak = () => {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
-    setTimeLeft(SHORT_BREAK_TIME);
+    setTimeLeft(shortBreakTime);
     setActiveMode("short");
   };
 
   const handleLongBreak = () => {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
-    setTimeLeft(LONG_BREAK_TIME);
+    setTimeLeft(longBreakTime);
     setActiveMode("long");
+  };
+
+  const handleStopAlarm = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsComplete(false); // 🔍 Hide popup
   };
 
   return (
@@ -143,7 +159,49 @@ export default function Pomodoro() {
           <RotateCcw className="w-6 h-6" />
         </button>
         {/* Settings Panel */}
+        <SettingsPanel
+          size={100} // Example size, adjust as needed
+          duration={secondsLeft}
+          isPomodoroPage={true}
+          onApply={(newSize, newDuration, newSound, times) => {
+            setPomodoroTime(times.pomodoro * 60);
+            setShortBreakTime(times.shortBreak * 60);
+            setLongBreakTime(times.longBreak * 60);
+
+            // ✅ Update secondsLeft if the mode is currently active
+            if (activeMode === "pomodoro") {
+              setTimeLeft(times.pomodoro * 60);
+            } else if (activeMode === "short") {
+              setTimeLeft(times.shortBreak * 60);
+            } else if (activeMode === "long") {
+              setTimeLeft(times.longBreak * 60);
+            }
+            if (audioRef.current) {
+              audioRef.current.src = newSound;
+            }
+          }}
+        />
+        <audio ref={audioRef} src={selectedSound} preload="auto" loop />
       </div>
+      {/* Timer Complete Popup */}
+      {isComplete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-background-light rounded-xl shadow-xl p-6 w-[90%] max-w-sm text-center">
+            <h2 className="text-2xl font-bold mb-3 text-text">
+              ✅ Timer Complete!
+            </h2>
+            <p className="text-sm mb-6 text-text">
+              Your countdown has finished.
+            </p>
+            <button
+              onClick={handleStopAlarm}
+              className="px-6 py-2 bg-primary text-white rounded-xl hover:bg-accent transition"
+            >
+              Stop Alarm
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

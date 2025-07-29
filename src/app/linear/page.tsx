@@ -172,6 +172,7 @@ export default function Linear() {
         <SettingsPanel
           size={size}
           duration={duration}
+          isRadialPage={true}
           onApply={(newSize, newDuration, newSound) => {
             setSize(newSize);
             setDuration(newDuration);
