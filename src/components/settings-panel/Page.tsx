@@ -6,21 +6,44 @@ import SizeSelection from "@/components/size-selection/Page";
 import DurationSelector from "@/components/duration-selection/Page";
 import Alarm from "@/components/alarm/Page";
 import { stopSound } from "../alarm/utils/audioController";
+import PomodoroSettings from "../pomodoro-settings/Page";
 import "../../app/globals.css";
 
 interface SettingsPanelProps {
   size: number;
   duration: number;
-  onApply: (size: number, duration: number, sound: string) => void;
+  onApply: (
+    size: number,
+    duration: number,
+    sound: string,
+    times: {
+      pomodoro: number;
+      shortBreak: number;
+      longBreak: number;
+    }
+  ) => void;
+  isPomodoroPage?: boolean;
+  isRadialPage?: boolean;
 }
 
-const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
+const Page: React.FC<SettingsPanelProps> = ({
+  size,
+  duration,
+  onApply,
+  isPomodoroPage = false,
+  isRadialPage = false,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Local temporary states
   const [tempSize, setTempSize] = useState(size);
   const [tempDuration, setTempDuration] = useState(duration);
   const [tempSound, setTempSound] = useState("/Alarm.mp3");
+
+  // Pomodoro settings states (add default values as needed)
+  const [pomodoro, setPomodoro] = useState(25);
+  const [shortBreak, setShortBreak] = useState(5);
+  const [longBreak, setLongBreak] = useState(10);
 
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
@@ -38,7 +61,11 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
   const handleApply = () => {
     stopSound();
     localStorage.setItem("selectedSound", tempSound); // Save to localStorage
-    onApply(tempSize, tempDuration, tempSound);
+    onApply(tempSize, tempDuration, tempSound, {
+      pomodoro,
+      shortBreak,
+      longBreak,
+    });
     closePanel();
   };
   return (
@@ -85,25 +112,44 @@ const Page: React.FC<SettingsPanelProps> = ({ size, duration, onApply }) => {
             >
               Settings
             </h2>
+            {/* Show Size Selection and Duration Selector ONLY on radial page */}
+            {isRadialPage && (
+              <>
+                {/* Size Selection */}
+                <div className="mb-4 hidden xl:block ">
+                  <SizeSelection size={tempSize} onChange={setTempSize} />
+                </div>
 
-            {/* Size Selection */}
-            <div className="mb-4 hidden xl:block ">
-              <SizeSelection size={tempSize} onChange={setTempSize} />
-            </div>
+                {/* Duration Selection */}
+                <div className="mb-4">
+                  <DurationSelector
+                    value={tempDuration}
+                    onChange={setTempDuration}
+                  />
+                </div>
+              </>
+            )}
 
-            {/* Duration Selection */}
-            <div className="mb-4">
-              <DurationSelector
-                value={tempDuration}
-                onChange={setTempDuration}
-              />
-            </div>
+            {/* Sound Selection */}
 
             {/* Alarm Component */}
             <Alarm
               value={tempSound}
               onChange={(sound) => setTempSound(sound)}
             />
+
+            {isPomodoroPage && (
+              <PomodoroSettings
+                pomodoro={pomodoro}
+                shortBreak={shortBreak}
+                longBreak={longBreak}
+                onChange={({ pomodoro, shortBreak, longBreak }) => {
+                  setPomodoro(pomodoro);
+                  setShortBreak(shortBreak);
+                  setLongBreak(longBreak);
+                }}
+              />
+            )}
 
             {/* Apply Button */}
             <div className="flex justify-end w-full">

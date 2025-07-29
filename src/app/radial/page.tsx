@@ -208,6 +208,7 @@ export default function RadialTimer() {
         <SettingsPanel
           size={size}
           duration={duration}
+          isRadialPage={true}
           onApply={(newSize, newDuration, newSound) => {
             setSize(newSize);
             setDuration(newDuration);
