@@ -33,8 +33,8 @@ const Page: React.FC<AlarmProps> = ({ value, onChange }) => {
         <option value="/Alarm.mp3">Classic Alarm</option>
         <option value="/AlarmBuzz.mp3">Buzz</option>
         <option value="/Digital.mp3">Digital</option>
-        <option value="/Morning.mp3">Morning Wake up</option>
-        <option value="/AlarmNotification.mp3">Soft Wake up</option>
+        <option value="/Morning.mp3">Morning Wake Up</option>
+        <option value="/SoftWakeUp.mp3">Soft Wake Up</option>
       </select>
     </div>
   );
