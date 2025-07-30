@@ -4,6 +4,7 @@ import { RotateCcw } from "lucide-react";
 import Full from "@/components/full-screen/Page";
 import "../../app/globals.css";
 import SettingsPanel from "@/components/settings-panel/Page";
+import SpotifyPage from "@/components/spotify/Page";
 
 export default function Linear() {
   const progressRef = useRef<SVGLineElement>(null);
@@ -207,6 +208,7 @@ export default function Linear() {
           </div>
         </div>
       )}
+      <SpotifyPage />
     </div>
   );
 }
