@@ -107,9 +107,9 @@ const Page: React.FC<SettingsPanelProps> = ({
             {/* Tabs */}
             <div className="flex mb-4">
               <button
-                className={`flex-1 py-2 text-sm font-medium rounded-t-lg border-b-2 transition ${
+                className={`flex-1 py-2 text-sm font-medium rounded-t-lg border-b-3 transition hover:cursor-pointer cursor-pointer ${
                   activeTab === "settings"
-                    ? "border-primary text-primary"
+                    ? "border-primary text-text"
                     : "border-transparent text-muted hover:text-text"
                 }`}
                 onClick={() => setActiveTab("settings")}
@@ -117,9 +117,9 @@ const Page: React.FC<SettingsPanelProps> = ({
                 Settings
               </button>
               <button
-                className={`flex-1 py-2 text-sm font-medium rounded-t-lg border-b-2 transition ${
+                className={`flex-1 py-2 text-sm font-medium rounded-t-lg border-b-2 transition hover:cursor-pointer cursor-pointer ${
                   activeTab === "spotify"
-                    ? "border-primary text-primary"
+                    ? "border-primary text-text"
                     : "border-transparent text-muted hover:text-text"
                 }`}
                 onClick={() => setActiveTab("spotify")}
