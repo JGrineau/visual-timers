@@ -10,6 +10,7 @@ import {
   Clock,
   CircleChevronLeft,
   HomeIcon,
+  Footprints,
 } from "lucide-react";
 import React from "react";
 
@@ -84,6 +85,14 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
           >
             <Circle size={20} />
             {!isCollapsed && <span>Radial</span>}
+          </Link>
+          <Link
+            href="/norwegian"
+            data-active={pathname === "/norwegian"}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
+          >
+            <Footprints size={20} xlinkTitle="Norwegian 4X4" />
+            {!isCollapsed && <span>Norwegian 4X4</span>}
           </Link>
           <Link
             href="/custom"
