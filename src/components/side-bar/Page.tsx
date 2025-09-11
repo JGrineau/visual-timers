@@ -10,6 +10,7 @@ import {
   Clock,
   CircleChevronLeft,
   HomeIcon,
+  Footprints,
 } from "lucide-react";
 import React from "react";
 
@@ -54,7 +55,9 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
             data-active={pathname === "/"}
             className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition  data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
-            <HomeIcon size={20} />
+            <span title="Home">
+              <HomeIcon size={20} />
+            </span>
             {!isCollapsed && <span>Home</span>}
           </Link>
 
@@ -64,7 +67,9 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
               data-active={pathname === "/pomodoro"}
               className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
             >
-              <Timer size={20} />
+              <span title="Pomodoro">
+                <Timer size={20} />
+              </span>
               {!isCollapsed && <span>Pomodoro</span>}
             </Link>
           </div>
@@ -74,7 +79,9 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
             data-active={pathname === "/linear"}
             className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
-            <LineChart size={20} />
+            <span title="Linear">
+              <LineChart size={20} />
+            </span>
             {!isCollapsed && <span>Linear</span>}
           </Link>
           <Link
@@ -82,8 +89,20 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
             data-active={pathname === "/radial"}
             className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
-            <Circle size={20} />
+            <span title="Radial">
+              <Circle size={20} />
+            </span>
             {!isCollapsed && <span>Radial</span>}
+          </Link>
+          <Link
+            href="/norwegian"
+            data-active={pathname === "/norwegian"}
+            className={`flex items-center ${navItemAlignment} space-x-2 hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
+          >
+            <span title="Norwegian 4X4">
+              <Footprints size={20} />
+            </span>
+            {!isCollapsed && <span>Norwegian 4X4</span>}
           </Link>
           <Link
             href="/custom"
@@ -91,7 +110,9 @@ export default function Page({ isCollapsed, setIsCollapsed }: Props) {
             className={`flex flex-col ${navItemAlignment} hover:hover:bg-primary hover:text-white p-2 rounded transition data-[active=true]:bg-primary data-[active=true]:text-white`}
           >
             <div className={`flex items-center ${navItemAlignment} space-x-2`}>
-              <Clock size={20} />
+              <span title="Custom">
+                <Clock size={20} />
+              </span>
               {!isCollapsed && <span>Custom</span>}
             </div>
             {!isCollapsed && (

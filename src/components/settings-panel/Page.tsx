@@ -7,6 +7,7 @@ import DurationSelector from "@/components/duration-selection/Page";
 import Alarm from "@/components/alarm/Page";
 import { stopSound } from "../alarm/utils/audioController";
 import PomodoroSettings from "../pomodoro-settings/Page";
+import NorwegianSettings from "../norwegian-settings/Page";
 import SpotifyPlayer from "@/components/spotify/Page"; // Make sure this is renamed properly
 import "../../app/globals.css";
 
@@ -24,6 +25,7 @@ interface SettingsPanelProps {
     }
   ) => void;
   isPomodoroPage?: boolean;
+  isNorwegianPage?: boolean;
   isRadialPage?: boolean;
 }
 
@@ -32,6 +34,7 @@ const Page: React.FC<SettingsPanelProps> = ({
   duration,
   onApply,
   isPomodoroPage = false,
+  isNorwegianPage = false,
   isRadialPage = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +50,10 @@ const Page: React.FC<SettingsPanelProps> = ({
   const [pomodoro, setPomodoro] = useState(25);
   const [shortBreak, setShortBreak] = useState(5);
   const [longBreak, setLongBreak] = useState(10);
+
+  const [hard, setHard] = useState(30); // Default value for 'hard'
+  const [relax, setRelax] = useState(10); // Default value for 'relax'
+  const [rounds, setRounds] = useState(3); // Default value for 'rounds'
 
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
@@ -158,6 +165,19 @@ const Page: React.FC<SettingsPanelProps> = ({
                         setPomodoro(pomodoro);
                         setShortBreak(shortBreak);
                         setLongBreak(longBreak);
+                      }}
+                    />
+                  )}
+
+                  {isNorwegianPage && (
+                    <NorwegianSettings
+                      hard={hard}
+                      relax={relax}
+                      rounds={rounds}
+                      onChange={({ hard, relax, rounds }) => {
+                        setHard(hard);
+                        setRelax(relax);
+                        setRounds(rounds);
                       }}
                     />
                   )}
