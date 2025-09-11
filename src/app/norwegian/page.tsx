@@ -1,7 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { RotateCcw } from "lucide-react";
-import SettingsPanel from "@/components/settings-panel/Page";
 import "../../app/globals.css";
 
 const HARD_TIME = 4 * 60; // 4 minutes
