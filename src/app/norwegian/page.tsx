@@ -1,16 +1,18 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { RotateCcw } from "lucide-react";
+import SettingsPanel from "@/components/settings-panel/Page";
 import "../../app/globals.css";
-
-const HARD_TIME = 4 * 60; // 4 minutes
-const RELAX_TIME = 4 * 60; // 4 minutes
-const TOTAL_ROUNDS = 4;
 
 type Phase = "hard" | "relax";
 
 export default function Norwegian4x4() {
-  const [secondsLeft, setSecondsLeft] = useState(HARD_TIME);
+  // Default values
+  const [hardTime, setHardTime] = useState(4); // minutes
+  const [relaxTime, setRelaxTime] = useState(4); // minutes
+  const [totalRounds, setTotalRounds] = useState(4);
+
+  const [secondsLeft, setSecondsLeft] = useState(hardTime * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [phase, setPhase] = useState<Phase>("hard");
   const [round, setRound] = useState(1);
@@ -51,13 +53,13 @@ export default function Norwegian4x4() {
     if (phase === "hard") {
       // Switch to relax
       setPhase("relax");
-      setSecondsLeft(RELAX_TIME);
+      setSecondsLeft(relaxTime * 60);
     } else {
       // End of relax
-      if (round < TOTAL_ROUNDS) {
+      if (round < totalRounds) {
         setRound((r) => r + 1);
         setPhase("hard");
-        setSecondsLeft(HARD_TIME);
+        setSecondsLeft(hardTime * 60);
       } else {
         // All rounds complete
         setIsRunning(false);
@@ -83,7 +85,7 @@ export default function Norwegian4x4() {
   const handleReset = () => {
     setIsRunning(false);
     clearInterval(intervalRef.current!);
-    setSecondsLeft(HARD_TIME);
+    setSecondsLeft(hardTime * 60);
     setPhase("hard");
     setRound(1);
     setIsComplete(false);
@@ -97,11 +99,75 @@ export default function Norwegian4x4() {
     setIsComplete(false);
   };
 
+  // const handleApplySettings = (
+  //   _size: number,
+  //   _duration: number,
+  //   _sound: string,
+  //   times: {
+  //   pomodoro: number;
+  //   shortBreak: number;
+  //   longBreak: number;
+  //   hard: number;
+  //   relax: number;
+  //   rounds: number;
+  //   }
+  // ) => {
+  //   // Grab from localStorage (already stored by SettingsPanel)
+  //   const savedHard = localStorage.getItem("norwegianHard");
+  //   const savedRelax = localStorage.getItem("norwegianRelax");
+  //   const savedRounds = localStorage.getItem("norwegianRounds");
+
+  //   const newHard = savedHard ? parseInt(savedHard, 10) : hardTime;
+  //   const newRelax = savedRelax ? parseInt(savedRelax, 10) : relaxTime;
+  //   const newRounds = savedRounds ? parseInt(savedRounds, 10) : totalRounds;
+
+  //   setHardTime(newHard);
+  //   setRelaxTime(newRelax);
+  //   setTotalRounds(newRounds);
+
+  //   // Reset timer with new settings
+  //   setIsRunning(false);
+  //   setPhase("hard");
+  //   setRound(1);
+  //   setSecondsLeft(newHard * 60);
+  //   setIsComplete(false);
+  // };
+
+  const handleApplySettings = (
+    _size: number,
+    _duration: number,
+    _sound: string,
+    times: {
+      pomodoro: number;
+      shortBreak: number;
+      longBreak: number;
+      hard: number;
+      relax: number;
+      rounds: number;
+    }
+  ) => {
+    // Use values directly from SettingsPanel
+    const newHard = times.hard;
+    const newRelax = times.relax;
+    const newRounds = times.rounds;
+
+    setHardTime(newHard);
+    setRelaxTime(newRelax);
+    setTotalRounds(newRounds);
+
+    // Reset timer with new settings
+    setIsRunning(false);
+    setPhase("hard");
+    setRound(1);
+    setSecondsLeft(newHard * 60);
+    setIsComplete(false);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-text">
       {/* Phase + Round Display */}
       <div className="text-2xl font-bold mt-6">
-        {phase === "hard" ? "Hard" : "Relax"} – Round {round}/{TOTAL_ROUNDS}
+        {phase === "hard" ? "Hard" : "Relax"} – Round {round}/{totalRounds}
       </div>
 
       {/* Timer Display */}
@@ -128,6 +194,14 @@ export default function Norwegian4x4() {
         </button>
       </div>
 
+      {/* Settings Panel */}
+      <SettingsPanel
+        size={0}
+        duration={0}
+        onApply={handleApplySettings}
+        isNorwegianPage
+      />
+
       {/* Beep sound */}
       <audio ref={audioRef} src="/Digital.mp3" preload="auto" />
 
@@ -139,7 +213,7 @@ export default function Norwegian4x4() {
               Workout Complete!
             </h2>
             <p className="text-sm mb-6 text-text">
-              You’ve finished all 4 rounds of Norwegian 4x4 🎉
+              You’ve finished all {totalRounds} rounds of Norwegian 4x4 🎉
             </p>
             <button
               onClick={handleStopAlarm}
