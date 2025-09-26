@@ -192,15 +192,15 @@ export default function Norwegian4x4() {
         >
           <RotateCcw className="w-6 h-6" />
         </button>
-      </div>
 
-      {/* Settings Panel */}
-      <SettingsPanel
-        size={0}
-        duration={0}
-        onApply={handleApplySettings}
-        isNorwegianPage
-      />
+        {/* Settings Panel */}
+        <SettingsPanel
+          size={0}
+          duration={0}
+          onApply={handleApplySettings}
+          isNorwegianPage
+        />
+      </div>
 
       {/* Beep sound */}
       <audio ref={audioRef} src="/Digital.mp3" preload="auto" />
