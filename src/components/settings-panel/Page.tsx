@@ -22,6 +22,9 @@ interface SettingsPanelProps {
       pomodoro: number;
       shortBreak: number;
       longBreak: number;
+      hard: number;
+      relax: number;
+      rounds: number;
     }
   ) => void;
   isPomodoroPage?: boolean;
@@ -51,9 +54,9 @@ const Page: React.FC<SettingsPanelProps> = ({
   const [shortBreak, setShortBreak] = useState(5);
   const [longBreak, setLongBreak] = useState(10);
 
-  const [hard, setHard] = useState(30); // Default value for 'hard'
-  const [relax, setRelax] = useState(10); // Default value for 'relax'
-  const [rounds, setRounds] = useState(3); // Default value for 'rounds'
+  const [hard, setHard] = useState(4); // Default value for 'hard'
+  const [relax, setRelax] = useState(4); // Default value for 'relax'
+  const [rounds, setRounds] = useState(4); // Default value for 'rounds'
 
   const togglePanel = () => setIsOpen(!isOpen);
   const closePanel = () => setIsOpen(false);
@@ -74,6 +77,9 @@ const Page: React.FC<SettingsPanelProps> = ({
       pomodoro,
       shortBreak,
       longBreak,
+      hard,
+      relax,
+      rounds,
     });
     closePanel();
   };
